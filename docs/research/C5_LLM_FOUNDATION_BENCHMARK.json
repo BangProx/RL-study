@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-19",
+  "result_origin": "local_executed",
+  "environment": {
+    "host": "Bang-Pro-M4.local",
+    "os": "macOS-26.5.1-arm64",
+    "python": "3.10.12",
+    "torch": "2.13.0",
+    "device": "cpu"
+  },
+  "data": {
+    "id": "tiny_reasoning",
+    "revision": "generated-v1",
+    "seed": 42,
+    "split_hash": "sha256:f238657bbf6c0a112debf7ef3ffafb452c14308dfb5ce57d9abe4f77ac1deedd",
+    "rows": {"train": 256, "validation": 64, "test": 128},
+    "train_preference_pairs": 512,
+    "validation_preference_pairs": 128,
+    "combined_prompt_response_tokens": {"min": 56, "max": 60},
+    "max_sequence_length": 64,
+    "silent_truncation": false
+  },
+  "model": {
+    "id": "tiny-v1",
+    "parameters": 242976
+  },
+  "sft": {
+    "steps": 100,
+    "batch_size": 16,
+    "first_10_loss_mean": 16.121038126945496,
+    "last_10_loss_mean": 0.3108582586050034,
+    "last_batch_response_token_accuracy": 0.8953846096992493,
+    "validation_response_token_accuracy": 0.9016266465187073,
+    "wall_seconds": 1.881862208014354
+  },
+  "reward_model": {
+    "steps": 120,
+    "batch_size": 16,
+    "first_10_loss_mean": 0.4460970744490623,
+    "last_10_loss_mean": 0.2675247684121132,
+    "last_batch_accuracy": 0.9375,
+    "validation_preference_accuracy": 0.796875,
+    "validation_numeric_accuracy": 0.59375,
+    "validation_format_accuracy": 1.0,
+    "score_length_correlation": 0.8316760659217834,
+    "validation_pairs": 128,
+    "wall_seconds": 2.636392791988328
+  },
+  "interpretation": [
+    "SFT and reward-model losses decreased in this local toy run.",
+    "The reward model generalizes much better to format preferences than numeric correctness.",
+    "The high positive score-length correlation is an observed shortcut warning, not a success metric.",
+    "No test split was used for training, model selection, or early stopping."
+  ]
+}

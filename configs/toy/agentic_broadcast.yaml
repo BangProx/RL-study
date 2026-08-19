@@ -1,0 +1,31 @@
+schema_version: 1
+profile: toy
+algorithm:
+  name: agentic_reinforce
+  variant: final-outcome-broadcast-baseline
+  gamma: 0.95
+  credit_assignment: broadcast_outcome
+data:
+  id: agentic_offline
+  revision: generated-v1
+  split: train
+  seed: 42
+  subset: mixed
+model:
+  policy: tiny-agent-v1
+training:
+  seed: 42
+  steps: 24
+  batch_size: 1
+  group_size: 2
+  response_token_budget: 4096
+  max_new_tokens: 48
+  max_sequence_length: 192
+  learning_rate: 0.001
+  device: cpu
+  allow_device_fallback: false
+evaluation:
+  every_steps: 8
+  split: validation
+output:
+  root: artifacts

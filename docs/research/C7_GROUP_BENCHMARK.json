@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "result_origin": "local_executed",
+  "executed_at": "2026-08-19",
+  "environment": {"device": "cpu", "python": "3.10.12", "torch": "2.13.0"},
+  "fairness_contract": {
+    "seed": 42,
+    "rollout_steps": 3,
+    "prompt_batch_size": 1,
+    "group_size": 4,
+    "max_new_tokens": 22,
+    "stopping_rule": "fixed rollout steps; bounded dynamic candidates",
+    "dynamic_sampling_budget_multiplier": 4,
+    "evaluation": "same 32 validation prompts, greedy, max_new_tokens=22",
+    "initial_policy_sha256": "sha256:dc4d713e94c2078da6a41b7d929012f3feb210ec49ae45af1b407f9e8bd1e6a7",
+    "split_hash": "sha256:f238657bbf6c0a112debf7ef3ffafb452c14308dfb5ce57d9abe4f77ac1deedd",
+    "non_dynamic_ordered_prompt_ids_sha256": "sha256:169edd8bbded6d603107cf014597e20d2d11490c2355128f416c162a4fe89d8b",
+    "all_variants_share_initial_hash": true,
+    "non_dynamic_variants_share_prompt_hash": true
+  },
+  "shared_sft": {
+    "optimizer_steps": 100,
+    "model_forwards": 202,
+    "validation_token_accuracy": 0.9016266465187073,
+    "wall_seconds": 1.8801454158965498
+  },
+  "variants": {
+    "grpo_paper": {"algorithm": "grpo", "options": {"kl_coefficient": 0.04}, "optimizer_steps": 3, "rollout_prompt_occurrences": 12, "generated_tokens": 246, "model_forwards_after_sft": 928, "informative_group_rate": 0.3333333333333333, "validation_exact_match": 0.0, "validation_format_rate": 1.0, "final_policy_sha256": "sha256:348fac2e7ef28eaf0946f4c3d3eeff52d6780b8610809f936de748458dc69c1e"},
+    "rloo_paper": {"algorithm": "rloo", "options": {"kl_coefficient": 0.02}, "optimizer_steps": 3, "rollout_prompt_occurrences": 12, "generated_tokens": 246, "model_forwards_after_sft": 928, "informative_group_rate": 0.3333333333333333, "validation_exact_match": 0.0, "validation_format_rate": 1.0, "final_policy_sha256": "sha256:81452c918e5c2dc80731926a322dfab81e07fd8390ea84e244ee214b059e7332"},
+    "dr_grpo_paper": {"algorithm": "dr_grpo", "options": {"reward_std": false, "fixed_max_length_denominator": true}, "optimizer_steps": 3, "rollout_prompt_occurrences": 12, "generated_tokens": 246, "model_forwards_after_sft": 928, "informative_group_rate": 0.3333333333333333, "validation_exact_match": 0.0, "validation_format_rate": 1.0, "final_policy_sha256": "sha256:324e8a11f1ce5ab496ede2aed8e0c9bdaaf60dbd29ff39bf8887e632a605b5b1"},
+    "gspo_paper": {"algorithm": "gspo", "options": {"clip_low": 0.0003, "clip_high": 0.0004, "sequence_ratio": true}, "optimizer_steps": 3, "rollout_prompt_occurrences": 12, "generated_tokens": 246, "model_forwards_after_sft": 928, "informative_group_rate": 0.3333333333333333, "validation_exact_match": 0.0, "validation_format_rate": 1.0, "final_policy_sha256": "sha256:fe81a6f08df11abc5d1ad79d95adceb603bd375934974063d7118b78560ba3ac"},
+    "dapo_no_components": {"optimizer_steps": 3, "rollout_prompt_occurrences": 12, "generated_tokens": 246, "model_forwards_after_sft": 928, "informative_group_rate": 0.3333333333333333, "validation_exact_match": 0.0, "final_policy_sha256": "sha256:348fac2e7ef28eaf0946f4c3d3eeff52d6780b8610809f936de748458dc69c1e"},
+    "dapo_clip_higher_only": {"options": {"clip_low": 0.2, "clip_high": 0.28}, "optimizer_steps": 3, "rollout_prompt_occurrences": 12, "generated_tokens": 246, "model_forwards_after_sft": 928, "informative_group_rate": 0.3333333333333333, "validation_exact_match": 0.0, "final_policy_sha256": "sha256:348fac2e7ef28eaf0946f4c3d3eeff52d6780b8610809f936de748458dc69c1e"},
+    "dapo_dynamic_sampling_only": {"options": {"budget_multiplier": 4}, "optimizer_steps": 2, "rollout_prompt_occurrences": 48, "optimized_prompt_occurrences": 8, "rejected_groups": 10, "exhausted_updates": 1, "generated_tokens": 988, "model_forwards_after_sft": 1670, "informative_group_rate": 0.16666666666666666, "validation_exact_match": 0.03125, "final_policy_sha256": "sha256:5d706d680237e86f9af049673467e46b5477f9ee70601bf466447d98ebcabf74"},
+    "dapo_token_loss_only": {"optimizer_steps": 3, "rollout_prompt_occurrences": 12, "generated_tokens": 246, "model_forwards_after_sft": 928, "informative_group_rate": 0.3333333333333333, "validation_exact_match": 0.0, "final_policy_sha256": "sha256:2d35f2145e7251e2d7db0dee4afce430f61efc1cd50a4531cc0faae696fcba1f"},
+    "dapo_overlong_only": {"options": {"soft_overlong_reward": true}, "optimizer_steps": 3, "rollout_prompt_occurrences": 12, "generated_tokens": 246, "model_forwards_after_sft": 893, "informative_group_rate": 0.3333333333333333, "mean_train_reward": -0.5333333214124044, "validation_exact_match": 0.0625, "final_policy_sha256": "sha256:e02b08e0612cbd78c39339194308d65ce190f431fa01053f82dbe0ee03c136f6"},
+    "dapo_all_four": {"optimizer_steps": 2, "rollout_prompt_occurrences": 48, "optimized_prompt_occurrences": 8, "rejected_groups": 10, "exhausted_updates": 1, "generated_tokens": 987, "model_forwards_after_sft": 1665, "informative_group_rate": 0.16666666666666666, "mean_train_reward": -0.12499998758236568, "validation_exact_match": 0.03125, "final_policy_sha256": "sha256:cde7eb0fcb2507d95bc6058e7927b62dd5c82244062d0e92325e885eac9508ac"}
+  },
+  "sources": ["deepseekmath-grpo-2024", "rloo-2024", "dapo-2025", "dr-grpo-2025", "gspo-2025"],
+  "interpretation_guardrails": [
+    "Dynamic sampling intentionally consumes extra rollout prompts and tokens.",
+    "An exhausted bounded dynamic update is reported, never silently replaced.",
+    "Clip-Higher can equal symmetric clipping in a single ratio-one update; analytic tests cover the nontrivial boundary.",
+    "One tiny seed cannot establish an algorithm ranking or paper-scale result.",
+    "DAPO code is paper-only clean-room; its unlicensed official repository was not used as implementation source."
+  ],
+  "paper_reported": null,
+  "upstream_reported": null,
+  "wall_seconds_total": 10.970103750005364
+}

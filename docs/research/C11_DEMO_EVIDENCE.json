@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "checkpoint": "C11",
+  "result_origin": "local_executed",
+  "audited_at": "2026-08-19T13:51:54.434068+00:00",
+  "command": "python -m rl_study.demo --profile toy --non-interactive --output-dir artifacts/demo --json",
+  "run_directory": "artifacts/demo/demo-e33c6lzw",
+  "environment": {
+    "os": "macOS-26.5.1-arm64-arm-64bit",
+    "python": "3.10.12",
+    "torch": "2.13.0",
+    "device": "cpu",
+    "peak_memory_bytes": 595099648
+  },
+  "timing": {
+    "training_and_diagnostics_seconds": 12.081763291964307,
+    "command_target_seconds": 600,
+    "command_wall_seconds": 25.472774042049423
+  },
+  "algorithms": [
+    "dpo",
+    "rlhf_ppo",
+    "grpo",
+    "dapo",
+    "agentic_reinforce"
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/demo/demo-e33c6lzw/summary.json",
+      "bytes": 11116,
+      "sha256": "sha256:d96626e2f4283c16f1252491a2691f9297e08415d850e77189900b26e7b30cec"
+    },
+    {
+      "path": "artifacts/demo/demo-e33c6lzw/comparison.png",
+      "bytes": 168559,
+      "sha256": "sha256:61f745a292f2dc06a4754f645306916976615631891b504d0eae45238aa59979"
+    },
+    {
+      "path": "artifacts/demo/demo-e33c6lzw/report.html",
+      "bytes": 3242,
+      "sha256": "sha256:d9f83ffb421d76e1bb0eb13214a863778918dac4d2b728ad32e5cfdb8070c586"
+    },
+    {
+      "path": "artifacts/demo/demo-e33c6lzw/compare.html",
+      "bytes": 13120,
+      "sha256": "sha256:56b0dfbafb4fb1342ec0b496b68972cd6f107c33be6167202865e8e9310b4704"
+    }
+  ],
+  "png_dimensions": {
+    "width": 1800,
+    "height": 1275
+  },
+  "checkpoints": [
+    {
+      "path": "artifacts/demo/demo-e33c6lzw/checkpoints/agentic-discounted_returns-seed42/checkpoint-000001",
+      "algorithm": {
+        "name": "agentic_reinforce",
+        "variant": "discounted-step-return-demo"
+      },
+      "step": 1,
+      "manifest_sha256": "sha256:ab6fe112539fe1e4687c7a0c54542ba643ebf55c49670d509ecce621bd2d0959",
+      "experiment_card_sha256": "sha256:69124095c78a6ce1af4f128ccb52da22fe348737a9daa064b9c692d7076929d5",
+      "verified_files": 6
+    },
+    {
+      "path": "artifacts/demo/demo-e33c6lzw/checkpoints/dapo-seed42/checkpoint-000001",
+      "algorithm": {
+        "name": "dapo",
+        "variant": "paper-four-components-demo"
+      },
+      "step": 1,
+      "manifest_sha256": "sha256:8b1c7d3df03a62f0abcabc9d0064ff77b02c8c4175c9ade647ffd329cf366a5a",
+      "experiment_card_sha256": "sha256:7f3b6b0ec57c804dba74a8025d97d1264b5a9faeb35f2b74a96baef26f42076c",
+      "verified_files": 6
+    },
+    {
+      "path": "artifacts/demo/demo-e33c6lzw/checkpoints/dpo-verifier-seed42/checkpoint-000001",
+      "algorithm": {
+        "name": "dpo",
+        "variant": "demo-one-step"
+      },
+      "step": 1,
+      "manifest_sha256": "sha256:9761182680819b350dde7f19e5a70eb5a73d49975bd760051ae4a7037ff43917",
+      "experiment_card_sha256": "sha256:b2cd91edb14da7a0e98d760a6ac8e527e1e135eb8c927f170ce23f3d8aed57f0",
+      "verified_files": 6
+    },
+    {
+      "path": "artifacts/demo/demo-e33c6lzw/checkpoints/grpo-seed42/checkpoint-000001",
+      "algorithm": {
+        "name": "grpo",
+        "variant": "deepseekmath-paper-demo"
+      },
+      "step": 1,
+      "manifest_sha256": "sha256:4f1bd17032b936f5f6dee978d1819600d08def509347a4ea78d87a358c93ae8d",
+      "experiment_card_sha256": "sha256:0eb887d3974f57bcaf74c348d0205d39bfd582f6b12c85882fed2940d2a1393b",
+      "verified_files": 6
+    },
+    {
+      "path": "artifacts/demo/demo-e33c6lzw/checkpoints/rlhf_ppo-verifier-seed42/checkpoint-000001",
+      "algorithm": {
+        "name": "rlhf_ppo",
+        "variant": "demo-one-step"
+      },
+      "step": 1,
+      "manifest_sha256": "sha256:aea38a4f81dc26630208883730aee68315d4f9dd5b1ef42cae39dd3f398500a0",
+      "experiment_card_sha256": "sha256:3f663f57a0aab86b71c85e12c4e3b95e68c7eb459e01cd2e37a008328a5f19bc",
+      "verified_files": 7
+    }
+  ],
+  "checks": [
+    "all JSON numbers finite",
+    "four same-task policies expose reward/KL/entropy/clip diagnostics",
+    "Agentic metrics remain semantically separate",
+    "PNG signature and dimensions valid",
+    "static report has data table and image alternative text",
+    "interactive UI uses textContent, has aria-live, and has no network URL",
+    "five checkpoint file manifests and experiment cards verified",
+    "paper/upstream results remain null"
+  ],
+  "retention": "demo artifacts are gitignored local evidence; rerun the command to regenerate them from source",
+  "limitations": [
+    "one tiny seed and one update do not rank algorithms",
+    "hosted CI and Colab are not implied by this local audit"
+  ]
+}

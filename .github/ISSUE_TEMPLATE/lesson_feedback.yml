@@ -1,0 +1,44 @@
+name: 강의 피드백
+description: 이해가 끊긴 지점, 오탈자, 접근성 또는 새 예시를 제안해 주세요.
+title: "[Lesson] "
+labels: [documentation, education]
+body:
+  - type: input
+    id: lesson
+    attributes:
+      label: Lesson/문서
+      placeholder: L08 또는 docs/math.md
+    validations:
+      required: true
+  - type: textarea
+    id: stuck
+    attributes:
+      label: 어디에서 이해가 끊겼나요?
+      description: 셀 제목, 수식, 코드 줄 또는 표현을 구체적으로 알려주세요.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 피드백 종류
+      options:
+        - 개념 설명
+        - 코드/실행
+        - 수식
+        - 접근성/집중 흐름
+        - 번역/parity
+        - 출처/정확성
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 도움이 될 변경
+      description: 더 작은 예시, 그림, 오답 사례 등 원하는 형태가 있으면 적어주세요.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: 공개 범위 확인
+      options:
+        - label: 이 내용에는 secret이나 private data가 없습니다.
+          required: true

@@ -1,0 +1,36 @@
+schema_version: 1
+profile: toy
+algorithm:
+  name: gspo
+  variant: paper-sequence
+  gamma: 1.0
+  clip_low: 0.0003
+  clip_high: 0.0004
+  kl_coefficient: 0.0
+  advantage_normalization: group_std
+  loss_reduction: sequence_mean
+  update_epochs: 1
+  reward_source: verifier
+data:
+  id: tiny_reasoning
+  revision: generated-v1
+  split: train
+  seed: 42
+model:
+  policy: tiny-v1
+  reference: tiny-v1-frozen
+  reward: deterministic-verifier
+training:
+  seed: 42
+  steps: 8
+  batch_size: 2
+  group_size: 4
+  response_token_budget: 32768
+  max_new_tokens: 22
+  device: cpu
+  allow_device_fallback: false
+evaluation:
+  every_steps: 2
+  split: validation
+output:
+  root: artifacts

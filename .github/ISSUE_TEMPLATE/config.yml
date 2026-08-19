@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 보안 취약점
+    url: https://github.com/BangProx/RL-study/security/advisories/new
+    about: 공개 issue 대신 private vulnerability report를 사용하세요.

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "checkpoint": "C9",
+  "executed_at": "2026-08-19",
+  "result_origin": "local_executed",
+  "environment": {
+    "os": "macOS-26.5.1-arm64-arm-64bit",
+    "python": "3.10.12",
+    "torch": "2.13.0",
+    "device": "cpu",
+    "torch_device_backend_autoload": "0"
+  },
+  "fairness": {
+    "seed": 42,
+    "optimizer_steps_each": 24,
+    "response_token_budget_each": 4096,
+    "initial_policy_hash": "sha256:8c3c8b4744be6fd2e9a3979d905e55f69d2fb0f80110dbec70103e6274e4c5fe",
+    "task_split_hash": "sha256:2e24cdf37a5c952ff684cedae399939d284abf166dbaf420ebc7932f356fc0f4",
+    "ordered_episode_id_hash": "sha256:cc4d5a70f6be057c9cde2754ff3bd54bde309eadc9eafc40d8ebf131f914a299",
+    "same_action_schema": true,
+    "same_evaluator": true,
+    "note": "학습된 policy가 달라 environment/action/token 비용은 달라질 수 있어 각각 실측했다."
+  },
+  "runs": [
+    {
+      "credit_assignment": "broadcast_outcome",
+      "config": "configs/toy/agentic_broadcast.yaml",
+      "config_hash": "sha256:0425e877fa6d5d4e0bb1deed5ec19f6066fd16efa7fdf12b48909966bf81bb34",
+      "artifact": "artifacts/c9-broadcast-final/agentic-broadcast_outcome-seed42/checkpoint-000024",
+      "budgets": {
+        "optimizer_steps": 24,
+        "environment_steps": 69,
+        "generated_action_tokens": 2094,
+        "processed_candidate_tokens": 116637,
+        "model_forwards": 162,
+        "wall_seconds": 1.0319029579404742,
+        "peak_memory_bytes": 344571904
+      },
+      "metrics": {
+        "train_success_rate": 0.0,
+        "train_multi_turn_rate": 0.9583333333333334,
+        "train_mean_process_reward": -0.25625000000000003,
+        "validation_success_rate": 0.0,
+        "validation_multi_turn_rate": 1.0,
+        "validation_useful_tool_step_rate": 0.125,
+        "validation_mean_process_reward": -0.375,
+        "last_loss": -0.0
+      }
+    },
+    {
+      "credit_assignment": "discounted_returns",
+      "config": "configs/toy/agentic_returns.yaml",
+      "config_hash": "sha256:3bda199776a93b4c7da0f6332a58b2902935adc7fcf1e55daa0e79ba11eebfc9",
+      "artifact": "artifacts/c9-returns-final/agentic-discounted_returns-seed42/checkpoint-000024",
+      "budgets": {
+        "optimizer_steps": 24,
+        "environment_steps": 67,
+        "generated_action_tokens": 1960,
+        "processed_candidate_tokens": 110253,
+        "model_forwards": 156,
+        "wall_seconds": 1.0013491248246282,
+        "peak_memory_bytes": 343162880
+      },
+      "metrics": {
+        "train_success_rate": 0.0,
+        "train_multi_turn_rate": 0.9583333333333334,
+        "train_mean_process_reward": -0.2479166666666666,
+        "validation_success_rate": 0.0,
+        "validation_multi_turn_rate": 1.0,
+        "validation_useful_tool_step_rate": 0.18181818181818182,
+        "validation_mean_process_reward": -0.22499999999999998,
+        "last_loss": -0.3038286864757538
+      }
+    }
+  ],
+  "interpretation": {
+    "claim": "두 방식 모두 8-task validation success 0이며 학습 우열을 주장할 수 없다.",
+    "observable": "outcome 0을 복사한 broadcast는 마지막 update가 0이지만 discounted return은 process reward로 non-zero update를 만든다.",
+    "statistical_limit": "single seed, 24 updates, eight deterministic validation tasks"
+  },
+  "resume_validation": {
+    "continuous_steps": 4,
+    "interrupted_then_resumed_steps": "2+2",
+    "model_state_equal": true,
+    "comparison": "torch.equal for every state tensor"
+  },
+  "failure_cases_verified": [
+    "context_overflow_no_silent_truncation",
+    "stale_and_future_policy_version",
+    "allowed_policy_lag",
+    "tool_nondeterminism_detection",
+    "retokenization_drift",
+    "naive_repeated-call_reward_hacking",
+    "invalid_action",
+    "tool_timeout",
+    "step_limit_truncation",
+    "arbitrary_calculator_code_rejected"
+  ],
+  "alfworld": {
+    "status": "external-manual",
+    "package_version": "0.4.2",
+    "revision": "1558ba46d078279ecb4c5d33a6cdffc96714a2d2",
+    "installed_version": null,
+    "assets_downloaded": null,
+    "network_used": false,
+    "license": "MIT",
+    "optional_solver_license": "GPL-3.0",
+    "reason": "현재 macOS arm64 환경에는 package/assets가 없고 upstream은 x86_64 Conda 호환 경로를 요구한다."
+  },
+  "sources": [
+    "agent-lightning-2025",
+    "agent-r1-2025",
+    "framework-agent-lightning",
+    "repo-agent-r1",
+    "benchmark-alfworld"
+  ],
+  "known_deviations": [
+    "finite candidate-action scaffold; not open-vocabulary decoding",
+    "repository TinyCausalLM and eight deterministic offline tasks",
+    "single-trajectory on-policy REINFORCE; no asynchronous workers"
+  ]
+}

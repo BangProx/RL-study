@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-19",
+  "purpose": "C2 toy-size selection; not a scientific performance benchmark",
+  "command": ".venv/bin/python scripts/benchmark_toy_sizes.py --device cpu --steps 20",
+  "warmup_steps": 3,
+  "measured_steps": 20,
+  "host": "Bang-Pro-M4.local",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "python": "3.10.12",
+  "torch": "2.13.0",
+  "torch_revision": "cf30153c4c131c8164ee7798e5022d810682e2cb",
+  "device": "cpu",
+  "results": [
+    {
+      "candidate": {
+        "name": "micro",
+        "vocab_size": 64,
+        "sequence_length": 32,
+        "batch_size": 16,
+        "hidden_size": 32,
+        "num_heads": 4,
+        "num_layers": 2,
+        "intermediate_size": 64
+      },
+      "parameters": 20224,
+      "parameter_bytes_fp32": 80896,
+      "median_train_step_ms": 3.081,
+      "p95_train_step_ms": 3.388,
+      "estimated_100_steps_seconds": 0.308
+    },
+    {
+      "candidate": {
+        "name": "base",
+        "vocab_size": 96,
+        "sequence_length": 64,
+        "batch_size": 16,
+        "hidden_size": 64,
+        "num_heads": 4,
+        "num_layers": 2,
+        "intermediate_size": 128
+      },
+      "parameters": 77312,
+      "parameter_bytes_fp32": 309248,
+      "median_train_step_ms": 6.43,
+      "p95_train_step_ms": 6.991,
+      "estimated_100_steps_seconds": 0.643
+    },
+    {
+      "candidate": {
+        "name": "learning",
+        "vocab_size": 128,
+        "sequence_length": 64,
+        "batch_size": 16,
+        "hidden_size": 96,
+        "num_heads": 4,
+        "num_layers": 3,
+        "intermediate_size": 192
+      },
+      "parameters": 242976,
+      "parameter_bytes_fp32": 971904,
+      "median_train_step_ms": 9.598,
+      "p95_train_step_ms": 10.809,
+      "estimated_100_steps_seconds": 0.96
+    }
+  ],
+  "selection": {
+    "tiny-micro-v1": "micro",
+    "tiny-base-v1": "base",
+    "tiny-v1": "learning",
+    "canonical_notebook_and_demo": "tiny-v1"
+  },
+  "limitations": [
+    "Times include a synthetic next-token forward, backward, and AdamW step only.",
+    "Rollout, Python environments, evaluation, reporting, and disk I/O are excluded.",
+    "This sandbox reported torch.backends.mps.is_built()=true but is_available()=false, so no MPS timing is claimed."
+  ]
+}

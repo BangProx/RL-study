@@ -1,0 +1,43 @@
+schema_version: 1
+profile: laptop
+algorithm:
+  name: sft
+  variant: prompt-completion-lora
+data:
+  id: openai/gsm8k
+  subset: main
+  revision: 740312add88f781978c0658806c59bc2815b9866
+  split: train
+  seed: 42
+  license_id: MIT
+  expected_download_bytes: 2725633
+model:
+  policy: HuggingFaceTB/SmolLM2-135M-Instruct
+  revision: 12fd25f77366fa6b3b4b768ec3050bf629380bac
+  license_id: Apache-2.0
+  expected_weight_bytes: 269060552
+  trust_remote_code: false
+  adapter: lora
+  dtype: float32
+  lora_rank: 8
+  lora_alpha: 16
+  lora_dropout: 0.0
+  lora_target_modules: q_proj,v_proj
+  gradient_checkpointing: false
+training:
+  seed: 42
+  steps: 2
+  batch_size: 1
+  group_size: 2
+  response_token_budget: 512
+  max_new_tokens: 32
+  max_sequence_length: 128
+  learning_rate: 0.0001
+  gradient_accumulation_steps: 1
+  device: cpu
+  allow_device_fallback: false
+evaluation:
+  every_steps: 1
+  split: validation
+output:
+  root: artifacts/laptop-smoke

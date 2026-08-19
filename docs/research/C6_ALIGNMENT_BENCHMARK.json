@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "result_origin": "local_executed",
+  "executed_at": "2026-08-19",
+  "environment": {
+    "device": "cpu",
+    "python": "3.10.12",
+    "torch": "2.13.0"
+  },
+  "fairness_contract": {
+    "seed": 42,
+    "batch_size": 8,
+    "optimizer_steps_per_policy": 8,
+    "stopping_rule": "fixed optimizer-step budget; no metric early stop",
+    "initial_policy_sha256": "sha256:dc4d713e94c2078da6a41b7d929012f3feb210ec49ae45af1b407f9e8bd1e6a7",
+    "per_algorithm_initial_hashes": {
+      "dpo": "sha256:dc4d713e94c2078da6a41b7d929012f3feb210ec49ae45af1b407f9e8bd1e6a7",
+      "rlhf_reward_model": "sha256:dc4d713e94c2078da6a41b7d929012f3feb210ec49ae45af1b407f9e8bd1e6a7",
+      "rlhf_verifier": "sha256:dc4d713e94c2078da6a41b7d929012f3feb210ec49ae45af1b407f9e8bd1e6a7"
+    },
+    "split_hash": "sha256:f238657bbf6c0a112debf7ef3ffafb452c14308dfb5ce57d9abe4f77ac1deedd",
+    "ordered_prompt_ids_sha256": "sha256:e92c5a2547f7e219606d0e8d6b57d2a76dff6b5650605b4f97b245aba6bf3043",
+    "prompt_occurrences": 64,
+    "evaluation_examples": 32,
+    "evaluation_decoding": {
+      "method": "greedy",
+      "max_new_tokens": 22,
+      "eos_token_id": 2
+    }
+  },
+  "shared_stages": {
+    "sft": {
+      "optimizer_steps": 100,
+      "model_forwards": 202,
+      "validation_token_accuracy": 0.9016266465187073,
+      "wall_seconds": 2.290763875003904
+    },
+    "reward_model": {
+      "optimizer_steps": 120,
+      "model_forwards": 242,
+      "heldout_preference_accuracy": 0.796875,
+      "numeric_accuracy": 0.59375,
+      "format_accuracy": 1.0,
+      "score_length_correlation": 0.8316760659217834,
+      "wall_seconds": 2.81456745788455
+    }
+  },
+  "policies": {
+    "sft": {
+      "final_policy_sha256": "sha256:dc4d713e94c2078da6a41b7d929012f3feb210ec49ae45af1b407f9e8bd1e6a7",
+      "optimizer_steps_after_sft": 0,
+      "generated_tokens_train": 0,
+      "processed_response_tokens_train": 0,
+      "model_forwards_after_sft": 0,
+      "metrics": {"exact_match": 0.0, "format_rate": 1.0}
+    },
+    "dpo": {
+      "final_policy_sha256": "sha256:c352bde0dc533d11a157a44858898ad9a166708689cd4bcb71dac5fc79b379d3",
+      "optimizer_steps_after_sft": 8,
+      "generated_tokens_train": 0,
+      "processed_response_tokens_train": 2520,
+      "model_forwards_after_sft": 36,
+      "wall_seconds": 0.2553848340176046,
+      "metrics": {
+        "exact_match": 0.0,
+        "format_rate": 0.875,
+        "preference_accuracy": 0.8046875
+      }
+    },
+    "rlhf_reward_model": {
+      "final_policy_sha256": "sha256:76d0995508e733a4627ace8f80b3148975b6ee268a7656668d82652e08cdf956",
+      "optimizer_steps_after_sft": 8,
+      "generated_tokens_train": 1368,
+      "processed_response_tokens_train": 0,
+      "model_forwards_after_sft": 2128,
+      "wall_seconds": 1.8671356250997633,
+      "metrics": {"exact_match": 0.0, "format_rate": 0.0}
+    },
+    "rlhf_verifier_ablation": {
+      "final_policy_sha256": "sha256:bcff0e32f0df1daf44b4883bc5773575a4a6498c55d1bbf3d527f0d88140574e",
+      "optimizer_steps_after_sft": 8,
+      "generated_tokens_train": 1317,
+      "processed_response_tokens_train": 0,
+      "model_forwards_after_sft": 2005,
+      "wall_seconds": 1.7334815841168165,
+      "metrics": {"exact_match": 0.03125, "format_rate": 1.0}
+    }
+  },
+  "interpretation": {
+    "observed_failure": "The reward-model PPO run collapsed format rate from 1.0 to 0.0 in this short run while the reward model had +0.832 length correlation.",
+    "guardrails": [
+      "DPO consumed two offline responses while RLHF generated one response; their token costs are reported, not declared equal.",
+      "Reward-model preference accuracy and policy exact match measure different objects.",
+      "No algorithm is required to win a short stochastic toy run.",
+      "These values do not reproduce or imply paper-scale results."
+    ]
+  },
+  "paper_reported": null,
+  "upstream_reported": null,
+  "wall_seconds_total": 11.131813667016104
+}

@@ -1,0 +1,26 @@
+schema_version: 1
+profile: toy
+algorithm:
+  name: reinforce
+  variant: paper-running-baseline
+  gamma: 0.99
+data:
+  id: tiny_grid_world
+  revision: generated-v1
+  split: train
+  seed: 42
+model:
+  policy: tiny-discrete-policy
+training:
+  seed: 42
+  steps: 350
+  batch_size: 16
+  group_size: 4
+  response_token_budget: 32768
+  device: cpu
+  allow_device_fallback: false
+evaluation:
+  every_steps: 50
+  split: validation
+output:
+  root: artifacts

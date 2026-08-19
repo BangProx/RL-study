@@ -1,0 +1,13 @@
+RL-study
+Copyright 2026 BangProx and RL-study contributors
+
+This product is licensed under the Apache License, Version 2.0.
+
+No third-party source file is currently vendored, copied, or adapted into this
+repository. Research papers and pinned open-source repositories are used for
+clean-room equations, behavioral cross-checks, and architecture comparison.
+Exact revisions and reuse decisions are recorded in docs/sources.yml and
+docs/research/C1_SOURCE_AUDIT.md.
+
+Downloaded models, datasets, optional frameworks, and external benchmarks retain
+their own licenses and are not redistributed by RL-study.

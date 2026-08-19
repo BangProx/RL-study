@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-19",
+  "result_origin": "local_executed",
+  "environment": {
+    "host": "Bang-Pro-M4.local",
+    "os": "macOS-26.5.1-arm64",
+    "python": "3.10.12",
+    "torch": "2.13.0",
+    "device": "cpu"
+  },
+  "task": {
+    "id": "tiny_grid_world",
+    "size": "4x4",
+    "max_steps": 32,
+    "seed": 42,
+    "evaluation_episodes": 50
+  },
+  "warning": "These are deterministic toy-environment sanity results, not paper reproduction or general algorithm rankings.",
+  "planning_and_prediction": {
+    "value_iteration_iterations": 7,
+    "policy_iteration_iterations": 7,
+    "value_policy_max_abs_diff": 0.0,
+    "mc_episodes": 10,
+    "mc_visited_state_rmse_to_dp": 0.0,
+    "td0_episodes": 100,
+    "td0_visited_state_rmse_to_dp": 0.000007439446108037373
+  },
+  "runs": [
+    {
+      "name": "q_learning",
+      "episodes": 300,
+      "updates": null,
+      "success_rate": 1.0,
+      "last_50_return_mean": 0.94,
+      "wall_seconds": 0.099
+    },
+    {
+      "name": "dqn",
+      "episodes": 250,
+      "updates": 3334,
+      "success_rate": 1.0,
+      "last_50_return_mean": 0.9412,
+      "wall_seconds": 1.729,
+      "variant": "hard target sync every 40 environment steps"
+    },
+    {
+      "name": "dqn_no_target_sync",
+      "episodes": 250,
+      "updates": 7349,
+      "success_rate": 0.0,
+      "last_50_return_mean": -0.32,
+      "wall_seconds": 2.589,
+      "variant": "frozen initial target; deliberate instability ablation"
+    },
+    {
+      "name": "reinforce",
+      "episodes": 350,
+      "updates": 350,
+      "success_rate": 1.0,
+      "last_50_return_mean": 0.9096,
+      "wall_seconds": 0.191,
+      "variant": "previous-episode exponential running baseline"
+    },
+    {
+      "name": "reinforce_no_baseline",
+      "episodes": 350,
+      "updates": 350,
+      "success_rate": 1.0,
+      "last_50_return_mean": 0.9252,
+      "wall_seconds": 0.169,
+      "variant": "no baseline"
+    },
+    {
+      "name": "actor_critic",
+      "episodes": 250,
+      "updates": 250,
+      "success_rate": 1.0,
+      "last_50_return_mean": 0.9406,
+      "wall_seconds": 0.132
+    },
+    {
+      "name": "ppo",
+      "episodes": 180,
+      "updates": 720,
+      "success_rate": 1.0,
+      "last_50_return_mean": 0.9478,
+      "wall_seconds": 0.31
+    }
+  ],
+  "resume_evidence": {
+    "algorithms": ["q_learning", "dqn", "reinforce", "actor_critic", "ppo"],
+    "test": "tests/integration/test_classic_runner_lifecycle.py",
+    "contract": "20 episodes continuous equals 10 episodes + checkpoint/resume + 10 episodes with rtol=0 and atol=0",
+    "cli_smoke": "q_learning step 20 -> resume step 40 -> validation success_rate 1.0"
+  }
+}

@@ -1,0 +1,461 @@
+{
+  "schema_version": "1.0",
+  "research_cutoff": "2026-08-19",
+  "generated_at": "2026-08-19T00:00:00+09:00",
+  "policy": {
+    "precedence": [
+      "latest paper or peer-reviewed version",
+      "author or institution repository at an exact revision",
+      "official framework documentation and source",
+      "author or institution technical post",
+      "secondary explanation"
+    ],
+    "provenance_classes": [
+      "copied",
+      "adapted",
+      "clean-room-reimplemented",
+      "architecture-reference",
+      "optional-runtime-dependency"
+    ],
+    "repository_license": "Apache-2.0",
+    "large_download_threshold_bytes": 100000000,
+    "large_download_requires": "--accept-download",
+    "default_trust_remote_code": false
+  },
+  "papers": [
+    {
+      "id": "sutton-barto-rl2",
+      "title": "Reinforcement Learning: An Introduction, Second Edition",
+      "authors": "Richard S. Sutton and Andrew G. Barto",
+      "status": "book",
+      "version": "2nd edition, 2018",
+      "url": "http://incompleteideas.net/book/the-book-2nd.html",
+      "used_for": ["bandit", "MDP", "dynamic programming", "Monte Carlo", "TD", "Q-learning", "policy gradient foundations"],
+      "provenance": "clean-room-reimplemented",
+      "notes": "Definitions and algorithms are re-expressed; book text and figures are not redistributed."
+    },
+    {
+      "id": "dqn-2013",
+      "title": "Playing Atari with Deep Reinforcement Learning",
+      "authors": "Volodymyr Mnih et al.",
+      "status": "arXiv preprint",
+      "arxiv": "1312.5602",
+      "version": "v1",
+      "url": "https://arxiv.org/abs/1312.5602",
+      "used_for": ["experience replay", "target-network lineage", "DQN objective"],
+      "provenance": "clean-room-reimplemented"
+    },
+    {
+      "id": "gae-2015",
+      "title": "High-Dimensional Continuous Control Using Generalized Advantage Estimation",
+      "authors": "John Schulman et al.",
+      "status": "ICLR 2016",
+      "arxiv": "1506.02438",
+      "version": "latest arXiv version audited at cutoff",
+      "url": "https://arxiv.org/abs/1506.02438",
+      "used_for": ["GAE equations", "bias-variance discussion"],
+      "provenance": "clean-room-reimplemented"
+    },
+    {
+      "id": "ppo-2017",
+      "title": "Proximal Policy Optimization Algorithms",
+      "authors": "John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov",
+      "status": "arXiv preprint",
+      "arxiv": "1707.06347",
+      "version": "v2",
+      "url": "https://arxiv.org/abs/1707.06347",
+      "used_for": ["clipped surrogate objective", "multiple optimization epochs"],
+      "provenance": "clean-room-reimplemented"
+    },
+    {
+      "id": "learning-to-summarize-2020",
+      "title": "Learning to Summarize with Human Feedback",
+      "authors": "Nisan Stiennon et al.",
+      "status": "NeurIPS 2020",
+      "arxiv": "2009.01325",
+      "version": "v3",
+      "url": "https://arxiv.org/abs/2009.01325",
+      "used_for": ["preference reward modeling", "KL-regularized RLHF lineage"],
+      "provenance": "clean-room-reimplemented"
+    },
+    {
+      "id": "instructgpt-2022",
+      "title": "Training Language Models to Follow Instructions with Human Feedback",
+      "authors": "Long Ouyang et al.",
+      "status": "NeurIPS 2022",
+      "arxiv": "2203.02155",
+      "version": "v1",
+      "url": "https://arxiv.org/abs/2203.02155",
+      "used_for": ["SFT-RM-PPO pipeline", "KL penalty", "PPO-ptx distinction"],
+      "provenance": "clean-room-reimplemented"
+    },
+    {
+      "id": "dpo-2023",
+      "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
+      "authors": "Rafael Rafailov, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn",
+      "status": "NeurIPS 2023",
+      "arxiv": "2305.18290",
+      "version": "v3",
+      "url": "https://arxiv.org/abs/2305.18290",
+      "used_for": ["DPO loss", "reference-policy log-ratio", "beta"],
+      "provenance": "clean-room-reimplemented"
+    },
+    {
+      "id": "deepseekmath-grpo-2024",
+      "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+      "authors": "Zhihong Shao et al.",
+      "status": "arXiv preprint",
+      "arxiv": "2402.03300",
+      "version": "v3",
+      "url": "https://arxiv.org/abs/2402.03300",
+      "used_for": ["GRPO objective", "group-relative advantage", "per-token KL estimator"],
+      "provenance": "clean-room-reimplemented"
+    },
+    {
+      "id": "rloo-2024",
+      "title": "Back to Basics: Revisiting REINFORCE Style Optimization for Learning from Human Feedback in LLMs",
+      "authors": "Arash Ahmadian et al.",
+      "status": "arXiv preprint",
+      "arxiv": "2402.14740",
+      "version": "v2",
+      "url": "https://arxiv.org/abs/2402.14740",
+      "used_for": ["leave-one-out baseline", "critic-free RLHF"],
+      "provenance": "clean-room-reimplemented",
+      "notes": "No author repository was linked by the Hugging Face Papers record at the audit cutoff."
+    },
+    {
+      "id": "dapo-2025",
+      "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale",
+      "authors": "Qiying Yu et al.",
+      "status": "arXiv preprint",
+      "arxiv": "2503.14476",
+      "version": "v2",
+      "url": "https://arxiv.org/abs/2503.14476",
+      "used_for": ["Clip-Higher", "Dynamic Sampling", "token-level policy-gradient loss", "overlong reward shaping"],
+      "provenance": "clean-room-reimplemented",
+      "notes": "The official DAPO repository had no license at the audited commit; no code is copied or adapted from it."
+    },
+    {
+      "id": "dr-grpo-2025",
+      "title": "Understanding R1-Zero-Like Training: A Critical Perspective",
+      "authors": "Zichen Liu et al.",
+      "status": "arXiv preprint",
+      "arxiv": "2503.20783",
+      "version": "v2",
+      "url": "https://arxiv.org/abs/2503.20783",
+      "used_for": ["GRPO length bias analysis", "unbiased Dr. GRPO reduction"],
+      "provenance": "clean-room-reimplemented"
+    },
+    {
+      "id": "gspo-2025",
+      "title": "Group Sequence Policy Optimization",
+      "authors": "Qwen Team",
+      "status": "arXiv preprint",
+      "arxiv": "2507.18071",
+      "version": "v2",
+      "url": "https://arxiv.org/abs/2507.18071",
+      "used_for": ["sequence-level importance ratio", "sequence-level clipping and optimization"],
+      "provenance": "clean-room-reimplemented",
+      "notes": "No author repository was linked by the Hugging Face Papers record at the audit cutoff."
+    },
+    {
+      "id": "agent-lightning-2025",
+      "title": "Agent Lightning: Train ANY AI Agents with Reinforcement Learning",
+      "authors": "Yuxiang Luo et al.",
+      "status": "arXiv preprint",
+      "arxiv": "2508.03680",
+      "version": "v1",
+      "url": "https://arxiv.org/abs/2508.03680",
+      "used_for": ["agent execution/training separation", "trace-to-transition formulation", "hierarchical credit assignment"],
+      "provenance": "architecture-reference"
+    },
+    {
+      "id": "agent-r1-2025",
+      "title": "Agent-R1: A Unified and Modular Framework for Agentic Reinforcement Learning",
+      "authors": "Yiming Cheng et al.",
+      "status": "arXiv preprint",
+      "arxiv": "2511.14460",
+      "version": "v2",
+      "url": "https://arxiv.org/abs/2511.14460",
+      "used_for": ["step-level MDP", "token-preserving multi-turn trajectories", "agentic RL architecture"],
+      "provenance": "architecture-reference"
+    }
+  ],
+  "repositories": [
+    {
+      "id": "repo-spinningup",
+      "url": "https://github.com/openai/spinningup",
+      "revision": "038665d62d569055401d91856abb287263096178",
+      "branch_or_release": "master",
+      "license": "MIT",
+      "license_path": "LICENSE",
+      "status_at_cutoff": "active, not archived",
+      "used_for": ["PPO implementation cross-check", "equation-to-code terminology"],
+      "provenance": "architecture-reference",
+      "copied_files": []
+    },
+    {
+      "id": "repo-summarize-from-feedback",
+      "url": "https://github.com/openai/summarize-from-feedback",
+      "revision": "700967448d10004279f138666442bf1497d0e705",
+      "branch_or_release": "master",
+      "license": "LicenseRef-Modified-MIT",
+      "license_path": "LICENSE",
+      "status_at_cutoff": "archived",
+      "used_for": ["historical RLHF pipeline cross-check"],
+      "provenance": "architecture-reference",
+      "copied_files": [],
+      "notes": "Its license covers repository code and feedback data but excludes the processed Reddit TL;DR dataset; nothing is redistributed."
+    },
+    {
+      "id": "repo-dpo",
+      "url": "https://github.com/eric-mitchell/direct-preference-optimization",
+      "revision": "f8b8c0f49dc92a430bae41585f9d467d3618fe2f",
+      "branch_or_release": "main",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "status_at_cutoff": "official research repository",
+      "used_for": ["DPO loss and batching cross-check"],
+      "provenance": "architecture-reference",
+      "copied_files": []
+    },
+    {
+      "id": "repo-deepseek-math",
+      "url": "https://github.com/deepseek-ai/DeepSeek-Math",
+      "revision": "b8b0f8ce093d80bf8e9a641e44142f06d092c305",
+      "branch_or_release": "main",
+      "license": "MIT",
+      "license_path": "LICENSE-CODE",
+      "status_at_cutoff": "official research repository",
+      "used_for": ["GRPO algorithm cross-check"],
+      "provenance": "architecture-reference",
+      "copied_files": [],
+      "notes": "The code license and model license are distinct; no model license is inferred from LICENSE-CODE."
+    },
+    {
+      "id": "repo-dapo",
+      "url": "https://github.com/BytedTsinghua-SIA/DAPO",
+      "revision": "33fe3176f0bb212588e84fc8ccf50dd554975144",
+      "branch_or_release": "main",
+      "license": "NOASSERTION",
+      "license_path": null,
+      "status_at_cutoff": "official repository without a license file",
+      "used_for": ["repository existence and reported experiment context only"],
+      "provenance": "architecture-reference",
+      "copied_files": [],
+      "notes": "No source code, configuration, documentation text, or assets are copied or adapted. Implementation uses the paper and independently licensed verl references."
+    },
+    {
+      "id": "repo-understand-r1-zero",
+      "url": "https://github.com/sail-sg/understand-r1-zero",
+      "revision": "dfca49dd460ee7cc8e4a5a162c876a7fd6993b87",
+      "branch_or_release": "main",
+      "license": "MIT",
+      "license_path": "LICENSE",
+      "status_at_cutoff": "official paper repository",
+      "used_for": ["Dr. GRPO reduction and experiment design cross-check"],
+      "provenance": "architecture-reference",
+      "copied_files": []
+    },
+    {
+      "id": "framework-pytorch",
+      "url": "https://github.com/pytorch/pytorch",
+      "revision": "cf30153c4c131c8164ee7798e5022d810682e2cb",
+      "branch_or_release": "v2.13.0",
+      "license": "BSD-3-Clause",
+      "license_path": "LICENSE",
+      "status_at_cutoff": "selected core tensor runtime",
+      "used_for": ["tensor/autograd", "neural-network reference implementation", "CPU/MPS/CUDA device abstraction"],
+      "provenance": "optional-runtime-dependency",
+      "copied_files": [],
+      "notes": "Binary distributions include additional third-party license notices; no PyTorch source or binary is redistributed by this repository."
+    },
+    {
+      "id": "framework-trl",
+      "url": "https://github.com/huggingface/trl",
+      "revision": "a7be897f5c8d7b52161f9f8a47d8e6242456b898",
+      "branch_or_release": "v1.10.0",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "status_at_cutoff": "selected laptop adapter",
+      "used_for": ["SFT", "reward modeling", "DPO", "PPO", "GRPO", "RLOO", "PEFT integration"],
+      "provenance": "optional-runtime-dependency",
+      "copied_files": []
+    },
+    {
+      "id": "framework-verl",
+      "url": "https://github.com/verl-project/verl",
+      "revision": "483b8a009ba3a97563edee3a19887e4862b8094a",
+      "branch_or_release": "v0.9.0",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "status_at_cutoff": "selected server adapter",
+      "used_for": ["PPO", "GRPO", "RLOO", "DAPO", "Dr. GRPO", "GSPO", "multi-turn tool calling"],
+      "provenance": "optional-runtime-dependency",
+      "copied_files": []
+    },
+    {
+      "id": "framework-openrlhf",
+      "url": "https://github.com/OpenRLHF/OpenRLHF",
+      "revision": "3c3be6234e0cb353e76bb8019947db9dfe99fca7",
+      "branch_or_release": "v0.11.0",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "status_at_cutoff": "documented alternative, not a maintained adapter",
+      "used_for": ["server framework comparison"],
+      "provenance": "architecture-reference",
+      "copied_files": []
+    },
+    {
+      "id": "framework-agent-lightning",
+      "url": "https://github.com/microsoft/agent-lightning",
+      "revision": "8f8b8f95fd4ed664822734811b61bb3341f4ddfe",
+      "branch_or_release": "v1.0.0",
+      "license": "MIT",
+      "license_path": "LICENSE",
+      "status_at_cutoff": "optional trace interoperability reference",
+      "used_for": ["trace schema", "agent/trainer separation"],
+      "provenance": "architecture-reference",
+      "copied_files": []
+    },
+    {
+      "id": "repo-agent-r1",
+      "url": "https://github.com/AgentR1/Agent-R1",
+      "revision": "b124aa46534cbf2fb8bc8af11405774984c42ac7",
+      "branch_or_release": "main",
+      "license": "MIT",
+      "license_path": "LICENSE",
+      "status_at_cutoff": "maintained organization repository; no release tag",
+      "used_for": ["step-level MDP architecture cross-check"],
+      "provenance": "architecture-reference",
+      "copied_files": [],
+      "notes": "The Hugging Face Papers metadata still linked an older personal repository; the maintained organization repository is pinned here."
+    },
+    {
+      "id": "benchmark-alfworld",
+      "url": "https://github.com/alfworld/alfworld",
+      "revision": "1558ba46d078279ecb4c5d33a6cdffc96714a2d2",
+      "branch_or_release": "0.4.2",
+      "license": "MIT",
+      "license_path": "LICENSE",
+      "status_at_cutoff": "selected optional external Agentic benchmark adapter",
+      "used_for": ["text-only external benchmark interface"],
+      "provenance": "optional-runtime-dependency",
+      "copied_files": [],
+      "notes": "ALFWorld and TextWorld are MIT; the optional Fast Downward dependency is GPL-3.0. No benchmark code, data, or solver is vendored. Full setup is external-manual, especially on macOS arm64."
+    }
+  ],
+  "models": [
+    {
+      "id": "model-smollm2-135m-instruct",
+      "hub_id": "HuggingFaceTB/SmolLM2-135M-Instruct",
+      "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+      "license": "Apache-2.0",
+      "access": "public, ungated",
+      "parameters": 134515008,
+      "weight_files": [{"path": "model.safetensors", "bytes": 269060552}],
+      "manifest_checksum": "hf_revision:12fd25f77366fa6b3b4b768ec3050bf629380bac",
+      "preset": "laptop-smoke",
+      "device_expectation": "CPU/MPS/CUDA one-step; capability is probed at runtime",
+      "requires_accept_download": true,
+      "redistribution": "weights are not committed or redistributed by this repository"
+    },
+    {
+      "id": "model-qwen3-0.6b",
+      "hub_id": "Qwen/Qwen3-0.6B",
+      "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+      "license": "Apache-2.0",
+      "access": "public, ungated",
+      "parameters": 751632384,
+      "weight_files": [{"path": "model.safetensors", "bytes": 1503300328}],
+      "manifest_checksum": "hf_revision:c1899de289a04d12100db370d81485cdf75e47ca",
+      "preset": "laptop-quality",
+      "device_expectation": "MPS/CUDA preferred; CPU smoke only",
+      "requires_accept_download": true,
+      "redistribution": "weights are not committed or redistributed by this repository"
+    },
+    {
+      "id": "model-qwen3-4b",
+      "hub_id": "Qwen/Qwen3-4B",
+      "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "license": "Apache-2.0",
+      "access": "public, ungated",
+      "parameters": 4022468096,
+      "weight_files": [
+        {"path": "model-00001-of-00003.safetensors", "bytes": 3957900840},
+        {"path": "model-00002-of-00003.safetensors", "bytes": 3987450520},
+        {"path": "model-00003-of-00003.safetensors", "bytes": 99630640}
+      ],
+      "total_weight_bytes": 8044982000,
+      "manifest_checksum": "hf_revision:1cfa9a7208912126459214e8b04321603b3df60c",
+      "preset": "server",
+      "device_expectation": "CUDA server profile; local execution is external-manual",
+      "requires_accept_download": true,
+      "redistribution": "weights are not committed or redistributed by this repository"
+    }
+  ],
+  "datasets": [
+    {
+      "id": "dataset-gsm8k",
+      "hub_id": "openai/gsm8k",
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "license": "MIT",
+      "access": "public, ungated",
+      "schema": {"question": "string", "answer": "string"},
+      "configs": {
+        "main": {
+          "train": {"rows": 7473, "parquet_bytes": 2306545},
+          "test": {"rows": 1319, "parquet_bytes": 419088},
+          "total_rows": 8792,
+          "total_parquet_bytes": 2725633
+        },
+        "all_configs": {"total_rows": 17584, "total_parquet_bytes": 5889887}
+      },
+      "manifest_checksum": "hf_revision:740312add88f781978c0658806c59bc2815b9866",
+      "usage": "main/train only for training; deterministic validation is derived from train with seed 42; official test is evaluation-only",
+      "requires_accept_download": false,
+      "contamination_control": "prompt IDs and split hashes are recorded; official test is never used for optimization",
+      "redistribution": "dataset files are not committed or redistributed by this repository"
+    },
+    {
+      "id": "dataset-ultrafeedback-binarized",
+      "hub_id": "HuggingFaceH4/ultrafeedback_binarized",
+      "revision": "3949bf5f8c17c394422ccfab0c31ea9c20bdeb85",
+      "license": "MIT",
+      "access": "public, ungated",
+      "splits": {
+        "train_prefs": {"rows": 61135, "parquet_bytes": 225891836},
+        "test_prefs": {"rows": 2000, "parquet_bytes": 7291160},
+        "all_splits": {"rows": 187405, "parquet_bytes": 649967196}
+      },
+      "manifest_checksum": "hf_revision:3949bf5f8c17c394422ccfab0c31ea9c20bdeb85",
+      "usage": "optional server preference dataset only; not the laptop default",
+      "requires_accept_download": true,
+      "lineage_warning": "Model-generated preferences require dataset-card and generation-lineage review before scientific claims",
+      "redistribution": "dataset files are not committed or redistributed by this repository"
+    },
+    {
+      "id": "dataset-tinyreasoning",
+      "hub_id": null,
+      "revision": "generated-by-repository-code",
+      "license": "Apache-2.0",
+      "access": "offline generated",
+      "usage": "default toy SFT, preference, verifier, RLHF, DPO, GRPO, DAPO, RLOO, Dr. GRPO and GSPO lineage",
+      "manifest_checksum": "recorded per generation config and seed",
+      "requires_accept_download": false,
+      "redistribution": "generated examples may be recreated under the repository Apache-2.0 license; generated bulk files are not committed"
+    }
+  ],
+  "implementation_decisions": {
+    "educational_core": "Clean-room PyTorch implementations owned by this repository; upstream repositories are cross-check references only.",
+    "core_tensor_runtime": "PyTorch v2.13.0",
+    "laptop_adapter": "TRL v1.10.0",
+    "server_adapter": "verl v0.9.0",
+    "documented_server_alternative": "OpenRLHF v0.11.0",
+    "agentic_reference": "Agent Lightning v1.0.0 and Agent-R1 at the pinned main revision",
+    "external_agentic_benchmark": "ALFWorld 0.4.2 text-only optional adapter",
+    "actual_laptop_dataset": "GSM8K main/train with deterministic local validation; preferences may be verifier-generated from train",
+    "optional_server_preference_dataset": "UltraFeedback Binarized at the pinned revision",
+    "unlicensed_upstream_rule": "DAPO repository code is not copied, adapted, vendored, or redistributed."
+  }
+}

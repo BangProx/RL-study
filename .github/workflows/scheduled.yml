@@ -1,0 +1,48 @@
+name: Scheduled learning-artifact audit
+
+on:
+  schedule:
+    - cron: "23 3 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links-and-notebooks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      TORCH_DEVICE_BACKEND_AUTOLOAD: "0"
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install full documentation environment
+        run: python -m pip install -e ".[dev,notebooks,docs]"
+      - name: Check external and local links
+        run: python scripts/check_links.py --network
+      - name: Execute every notebook in a fresh kernel
+        run: python scripts/execute_notebooks.py --language all --kernel-name python3
+      - name: Revalidate parity, outputs, Colab source, and site
+        run: |
+          python scripts/check_notebook_contract.py --language all --require-executed
+          python scripts/check_bilingual_parity.py
+          python scripts/check_colab_contract.py
+          python -m mkdocs build --strict
+      - name: Upload dated audit evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: scheduled-learning-audit-${{ github.run_id }}
+          path: |
+            docs/research/C10_NOTEBOOK_EXECUTIONS.jsonl
+            docs/research/C10_NOTEBOOK_REPORT.json
+            notebooks/ko
+            notebooks/en
+            site
+          if-no-files-found: error
+          retention-days: 14

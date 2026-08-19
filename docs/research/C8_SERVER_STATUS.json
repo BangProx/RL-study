@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "run_status": "external-manual",
+  "result_origin": "not_executed",
+  "framework": {
+    "name": "verl",
+    "version": "0.9.0",
+    "revision": "483b8a009ba3a97563edee3a19887e4862b8094a",
+    "license_id": "Apache-2.0"
+  },
+  "model": {
+    "id": "Qwen/Qwen3-4B",
+    "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "license_id": "Apache-2.0",
+    "expected_weight_bytes": 8044982000
+  },
+  "hardware_required": "Linux, CUDA, 1 node x 8 GPUs; resize only after preflight",
+  "recipes": {
+    "dapo": {
+      "config": "configs/server/qwen3_4b_dapo_verl.yaml",
+      "entrypoint": ["python3", "-m", "verl.trainer.main_ppo", "--config-name", "ppo_trainer"],
+      "critical_overrides": {
+        "algorithm.adv_estimator": "grpo",
+        "actor_rollout_ref.actor.clip_ratio_low": 0.2,
+        "actor_rollout_ref.actor.clip_ratio_high": 0.28,
+        "actor_rollout_ref.actor.loss_agg_mode": "token-mean",
+        "algorithm.filter_groups.enable": true,
+        "algorithm.filter_groups.max_num_gen_batches": 10,
+        "reward_model.overlong_buffer.enable": true,
+        "reward_model.overlong_buffer.len": 512,
+        "actor_rollout_ref.rollout.n": 8
+      }
+    },
+    "gspo": {
+      "config": "configs/server/qwen3_4b_gspo_verl.yaml",
+      "entrypoint": ["python3", "-m", "verl.trainer.main_ppo", "--config-name", "ppo_trainer"],
+      "critical_overrides": {
+        "algorithm.adv_estimator": "grpo",
+        "actor_rollout_ref.actor.policy_loss.loss_mode": "gspo",
+        "actor_rollout_ref.actor.clip_ratio_low": 0.0003,
+        "actor_rollout_ref.actor.clip_ratio_high": 0.0004,
+        "actor_rollout_ref.actor.loss_agg_mode": "seq-mean-token-mean",
+        "actor_rollout_ref.rollout.n": 8
+      }
+    }
+  },
+  "manual_replacements": [
+    "data.train_files=REPLACE_WITH_TRAIN_PARQUET",
+    "data.val_files=REPLACE_WITH_VALIDATION_PARQUET"
+  ],
+  "render_command": "rl-study render-server --config configs/server/qwen3_4b_dapo_verl.yaml --json",
+  "success_criteria": [
+    "verl reports version 0.9.0 and all requested GPUs",
+    "one optimizer step is finite and a checkpoint is written",
+    "experiment card records generated tokens, model forwards, wall time, and peak memory"
+  ],
+  "local_executed": null,
+  "paper_reported": null,
+  "reason_not_executed": "No Linux CUDA 8-GPU server was available in the C8 environment."
+}

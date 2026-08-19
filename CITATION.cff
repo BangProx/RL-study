@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "RL-study를 연구나 교육에 사용했다면 이 저장소와 사용한 source paper를 함께 인용해 주세요."
+title: "RL-study: 실행 가능한 LLM 강화학습 강좌와 clean-room reference 구현"
+type: software
+version: 0.1.0
+authors:
+  - name: "BangProx and RL-study contributors"
+repository-code: "https://github.com/BangProx/RL-study"
+url: "https://github.com/BangProx/RL-study"
+license: Apache-2.0
+keywords:
+  - reinforcement learning
+  - RLHF
+  - DPO
+  - GRPO
+  - DAPO
+  - agentic RL
+  - education
+abstract: >-
+  A Korean-first, self-contained course and clean-room PyTorch reference
+  implementation connecting reinforcement-learning equations, tensors,
+  training loops, reproducible artifacts, and language-model alignment.

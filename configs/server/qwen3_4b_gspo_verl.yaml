@@ -1,0 +1,44 @@
+schema_version: 1
+profile: server
+algorithm:
+  name: gspo
+  variant: paper-sequence
+  clip_low: 0.0003
+  clip_high: 0.0004
+  kl_coefficient: 0.0
+  update_epochs: 1
+  reward_source: verifier
+data:
+  id: openai/gsm8k
+  subset: main
+  revision: 740312add88f781978c0658806c59bc2815b9866
+  split: train
+  seed: 42
+  license_id: MIT
+  expected_download_bytes: 2725633
+model:
+  policy: Qwen/Qwen3-4B
+  revision: 1cfa9a7208912126459214e8b04321603b3df60c
+  license_id: Apache-2.0
+  expected_weight_bytes: 8044982000
+  trust_remote_code: false
+  adapter: none
+  dtype: bfloat16
+  gradient_checkpointing: true
+training:
+  seed: 42
+  steps: 100
+  batch_size: 128
+  group_size: 8
+  response_token_budget: 104857600
+  max_new_tokens: 2048
+  max_sequence_length: 1024
+  learning_rate: 0.000001
+  gradient_accumulation_steps: 1
+  device: cuda
+  allow_device_fallback: false
+evaluation:
+  every_steps: 20
+  split: validation
+output:
+  root: checkpoints/qwen3-4b-gspo

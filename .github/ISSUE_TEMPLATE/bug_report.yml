@@ -1,0 +1,46 @@
+name: 버그 보고
+description: 재현 가능한 코드, CLI, notebook 또는 문서 오류를 알려주세요.
+title: "[Bug] "
+labels: [bug, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: "Secret, token, private data와 대규모 artifact는 첨부하지 마세요. 보안 취약점은 SECURITY.md를 따릅니다."
+  - type: textarea
+    id: summary
+    attributes:
+      label: 무엇이 잘못됐나요?
+      description: 기대한 동작과 실제 동작을 짧게 적어주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 최소 재현 절차
+      placeholder: "1. ...\n2. ...\n3. ..."
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 환경
+      description: OS, Python, PyTorch, device, 설치 방식과 relevant config를 적어주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 오류와 artifact
+      description: Secret을 제거한 traceback, experiment card 또는 screenshot을 넣어주세요.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 확인
+      options:
+        - label: 최신 main에서 재현했습니다.
+          required: true
+        - label: Secret과 개인 정보를 제거했습니다.
+          required: true
+        - label: 보안 취약점 공개 보고가 아닙니다.
+          required: true

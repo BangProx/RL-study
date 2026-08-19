@@ -1,0 +1,35 @@
+schema_version: 1
+profile: toy
+algorithm:
+  name: rlhf_ppo
+  variant: token-kl
+  gamma: 1.0
+  clip_low: 0.2
+  clip_high: 0.2
+  kl_coefficient: 0.02
+  advantage_normalization: masked-batch
+  loss_reduction: token-mean
+  update_epochs: 2
+  reward_source: verifier
+data:
+  id: tiny_reasoning
+  revision: generated-v1
+  split: train
+  seed: 42
+model:
+  policy: tiny-v1
+  reference: tiny-v1-frozen
+  reward: deterministic-verifier
+training:
+  seed: 42
+  steps: 20
+  batch_size: 8
+  group_size: 4
+  response_token_budget: 32768
+  device: cpu
+  allow_device_fallback: false
+evaluation:
+  every_steps: 5
+  split: validation
+output:
+  root: artifacts

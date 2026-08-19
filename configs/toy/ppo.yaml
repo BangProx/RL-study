@@ -1,0 +1,31 @@
+schema_version: 1
+profile: toy
+algorithm:
+  name: ppo
+  variant: classic-paper
+  gamma: 0.99
+  clip_low: 0.2
+  clip_high: 0.2
+  kl_coefficient: 0.0
+  advantage_normalization: batch
+  loss_reduction: masked_mean
+data:
+  id: tiny_grid_world
+  revision: generated-v1
+  split: train
+  seed: 42
+model:
+  policy: tiny-v1
+training:
+  seed: 42
+  steps: 100
+  batch_size: 16
+  group_size: 4
+  response_token_budget: 32768
+  device: cpu
+  allow_device_fallback: false
+evaluation:
+  every_steps: 25
+  split: validation
+output:
+  root: artifacts

@@ -1,0 +1,43 @@
+schema_version: 1
+profile: toy
+algorithm:
+  name: dapo
+  variant: paper-four-components
+  gamma: 1.0
+  clip_low: 0.2
+  clip_high: 0.28
+  kl_coefficient: 0.0
+  advantage_normalization: group_std
+  loss_reduction: token_mean
+  update_epochs: 1
+  reward_source: verifier
+  clip_higher: true
+  dynamic_sampling: true
+  dynamic_sampling_multiplier: 4
+  token_level_loss: true
+  overlong_reward_shaping: true
+  overlong_buffer_length: 4
+  overlong_penalty_scale: 1.0
+data:
+  id: tiny_reasoning
+  revision: generated-v1
+  split: train
+  seed: 42
+model:
+  policy: tiny-v1
+  reference: tiny-v1-frozen
+  reward: deterministic-verifier
+training:
+  seed: 42
+  steps: 6
+  batch_size: 2
+  group_size: 4
+  response_token_budget: 32768
+  max_new_tokens: 22
+  device: cpu
+  allow_device_fallback: false
+evaluation:
+  every_steps: 2
+  split: validation
+output:
+  root: artifacts

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "result_origin": "local_executed",
+  "executed_at": "2026-08-19",
+  "environment": {
+    "os": "macOS-26.5.1-arm64-arm-64bit",
+    "python": "3.10.12",
+    "torch": "2.13.0",
+    "device": "cpu",
+    "dtype": "float32",
+    "peak_memory_bytes": 1258356736
+  },
+  "dependencies": {
+    "lock_sha256": "sha256:cf45c4b82a8081aea360b05552a4b007fd771228ad065b65a73f1f563a321934",
+    "trl": "1.10.0",
+    "transformers": "4.57.6",
+    "peft": "0.20.0",
+    "datasets": "4.8.5",
+    "accelerate": "1.14.0"
+  },
+  "model": {
+    "id": "HuggingFaceTB/SmolLM2-135M-Instruct",
+    "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+    "license_id": "Apache-2.0",
+    "download_bytes_audited": 269060552,
+    "cache_disk_usage_observed": "260M",
+    "trust_remote_code": false
+  },
+  "data": {
+    "id": "openai/gsm8k",
+    "subset": "main",
+    "revision": "740312add88f781978c0658806c59bc2815b9866",
+    "license_id": "MIT",
+    "training_source": "main/train only",
+    "validation_source": "256 deterministic examples derived from main/train",
+    "official_test_loaded": false,
+    "split_hash": "sha256:7c2cb77e4cd14b96e659e3b1f3716914354f3bc125692f6f1a88a6ba49978cb3"
+  },
+  "algorithm": {
+    "name": "sft",
+    "variant": "prompt-completion-lora",
+    "target_modules": ["q_proj", "v_proj"],
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "trainable_parameters": 460800,
+    "total_parameters": 134975808,
+    "trainable_fraction": 0.003413945112297457,
+    "base_gradient_contract": "no non-lora parameter received a gradient"
+  },
+  "run": {
+    "seed": 42,
+    "optimizer_steps": 2,
+    "processed_completion_tokens": 103,
+    "model_forwards": 10,
+    "validation_examples": 8,
+    "last_train_loss": 1.0795384645462036,
+    "validation_loss": 1.546576276421547,
+    "cached_run_wall_seconds": 2.311815374996513,
+    "initial_download_plus_one_step_wall_seconds": 69.74280262505636
+  },
+  "resume_parity": {
+    "continuous_steps": 2,
+    "interrupted_then_resumed": "1+1",
+    "adapter_files_byte_equal": true,
+    "adapter_sha256": "sha256:0c56d05d34d8b12488a9072b63c6175077d568e1ce478452f95833b52c0890f9",
+    "metrics_equal": true
+  },
+  "capabilities_not_claimed": {
+    "mps": "PyTorch build present but unavailable in the sandbox probe",
+    "qlora": "unsupported on the probed CPU; CUDA plus bitsandbytes required",
+    "qwen3_0_6b": "preflight only; not downloaded or executed",
+    "server": "external-manual; no CUDA server was available"
+  },
+  "interpretation_guardrails": [
+    "Validation loss averages eight train-derived validation examples; it is not GSM8K test exact match.",
+    "This is a LoRA SFT capability and checkpoint test, not an RL paper reproduction.",
+    "The first wall time includes approved downloads; cached wall time does not.",
+    "Weights, dataset files, and generated checkpoints are git-ignored and not redistributed."
+  ],
+  "paper_reported": null,
+  "upstream_reported": null
+}
