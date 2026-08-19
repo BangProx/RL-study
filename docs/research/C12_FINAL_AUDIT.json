@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "checkpoint": "C12",
+  "status": "local_pass_hosted_pending",
+  "result_origin": "local_executed",
+  "executed_at": "2026-08-19T14:18:54.611126+00:00",
+  "clean_clone": {
+    "path_at_execution": "/private/tmp/rl-study-c12-clone.bDVZbI/RL-study",
+    "initial_git_status": "",
+    "commit": "c29ad1c4967b9411a68dd847d73b3e3b2502a890",
+    "branch": "main",
+    "origin": "https://github.com/BangProx/RL-study.git"
+  },
+  "environment": {
+    "os": "macOS-26.5.1-arm64-arm-64bit",
+    "python": "3.10.12",
+    "torch": "2.13.0",
+    "interpreter": "/private/tmp/rl-study-c12-clone.bDVZbI/venv/bin/python",
+    "peak_auditor_memory_bytes": 195493888
+  },
+  "hosted_pending_allowed": true,
+  "commands": [
+    {
+      "argv": [
+        "<python>",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.5236502080224454,
+      "output_sha256": "sha256:9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+      "output_tail": "No broken requirements found.\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "-m",
+        "rl_study.cli",
+        "--version"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.8738567079417408,
+      "output_sha256": "sha256:4ca1fa0bf0a9d6c22c21817a85fa25499917afaee352d7971c0122eded00027b",
+      "output_tail": "rl-study 0.1.0\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "-m",
+        "rl_study.demo",
+        "--profile",
+        "toy",
+        "--non-interactive",
+        "--output-dir",
+        "artifacts/c12-demo",
+        "--json"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 26.101462667109445,
+      "output_sha256": "sha256:0eae876729f8faff0c98f62e3d331d1c26f55dd01d33811c6df30c687fde7718",
+      "output_tail": "{\n  \"algorithms\": [\n    \"dpo\",\n    \"rlhf_ppo\",\n    \"grpo\",\n    \"dapo\",\n    \"agentic_reinforce\"\n  ],\n  \"checkpoints\": [\n    \"artifacts/c12-demo/demo-uwc__ugg/checkpoints/dpo-verifier-seed42/checkpoint-000001\",\n    \"artifacts/c12-demo/demo-uwc__ugg/checkpoints/rlhf_ppo-verifier-seed42/checkpoint-000001\",\n    \"artifacts/c12-demo/demo-uwc__ugg/checkpoints/grpo-seed42/checkpoint-000001\",\n    \"artifacts/c12-demo/demo-uwc__ugg/checkpoints/dapo-seed42/checkpoint-000001\",\n    \"artifacts/c12-demo/demo-uwc__ugg/checkpoints/agentic-discounted_returns-seed42/checkpoint-000001\"\n  ],\n  \"device\": \"cpu\",\n  \"experiment_cards\": [\n    \"artifacts/c12-demo/demo-uwc__ugg/checkpoints/dpo-verifier-seed42/checkpoint-000001/experiment-card.json\",\n    \"artifacts/c12-demo/demo-uwc__ugg/checkpoints/rlhf_ppo-verifier-seed42/checkpoint-000001/experiment-card.json\",\n    \"artifacts/c12-demo/demo-uwc__ugg/checkpoints/grpo-seed42/checkpoint-000001/experiment-card.json\",\n    \"artifacts/c12-demo/demo-uwc__ugg/checkpoints/dapo-seed42/checkpoint-000001/experiment-card.json\",\n    \"artifacts/c12-demo/demo-uwc__ugg/checkpoints/agentic-discounted_returns-seed42/checkpoint-000001/experiment-card.json\"\n  ],\n  \"fallback_used\": false,\n  \"figure_png\": \"artifacts/c12-demo/demo-uwc__ugg/comparison.png\",\n  \"interactive_html\": \"artifacts/c12-demo/demo-uwc__ugg/compare.html\",\n  \"interpretation\": \"toy diagnostics; not a paper-scale ranking\",\n  \"profile\": \"toy\",\n  \"report_html\": \"artifacts/c12-demo/demo-uwc__ugg/report.html\",\n  \"result_origin\": \"local_executed\",\n  \"run_directory\": \"artifacts/c12-demo/demo-uwc__ugg\",\n  \"status\": \"completed\",\n  \"summary_json\": \"artifacts/c12-demo/demo-uwc__ugg/summary.json\",\n  \"training_and_diagnostics_seconds\": 11.507518916856498,\n  \"wall_seconds\": 25.329049833118916\n}\nMatplotlib is building the font cache; this may take a moment.\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 110.33675262518227,
+      "output_sha256": "sha256:b6fa684c2fdec7dd58b8d3e6586da78825071095513de8780f0c71b4a465ec39",
+      "output_tail": "........................................................................ [ 49%]\n........................................................................ [ 98%]\n..                                                                       [100%]\n146 passed in 109.33s (0:01:49)\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.5298884580843151,
+      "output_sha256": "sha256:82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "output_tail": "All checks passed!\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "-m",
+        "mypy",
+        "src"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 9.67597574996762,
+      "output_sha256": "sha256:e01191578d3a3bac202cef72aec747f3048def999e4a0906368a5b91b8849682",
+      "output_tail": "Success: no issues found in 66 source files\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "scripts/check_design_contract.py"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.018881125142797828,
+      "output_sha256": "sha256:2f7dcd7c8dec43a670663fb904006b48cb6766270653a6d498631c744865a4fa",
+      "output_tail": "C2 design contract: PASS\nlessons=17, requirements=20, sources=33, tiny_v1_params=242976\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "scripts/check_provenance.py"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.022466124966740608,
+      "output_sha256": "sha256:3a76df9185638d6f127e169bf1290d605dd7b514d76e2a4df0f6b0963f4b71c3",
+      "output_tail": "Provenance contract: PASS (33 sources, 32 documented source IDs, 0 copied/adapted repositories)\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "scripts/check_links.py",
+        "--local"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.08119108295068145,
+      "output_sha256": "sha256:0204191f718a32184611b2b23ee5998e40e263bc5d8c9996552674f2678cd141",
+      "output_tail": "Local links: PASS (68 file targets)\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "scripts/check_release_contract.py",
+        "--allow-hosted-pending"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.08684595813974738,
+      "output_sha256": "sha256:d48f956d21a140e20db09ba11532db9380e865616fe342935c77754464b41a79",
+      "output_tail": "Release contract: PASS (version=0.1.0, files=238, text_files=238, research_json=11, largest_bytes=144765, pending=['R11', 'R17', 'R19', 'R20'])\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "scripts/check_notebook_contract.py",
+        "--language",
+        "all",
+        "--require-executed"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 1.0056136660277843,
+      "output_sha256": "sha256:cd28b9508f7a0267f1871df5acf6080f3c14b228172ef260c7602105de547121",
+      "output_tail": "Notebook contract: PASS (34 notebooks)\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "scripts/check_bilingual_parity.py"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.6892253749538213,
+      "output_sha256": "sha256:3e7fddd3ba6e339eff75e7faeebab32da737d48b24b70fd15afc77777b0fb535",
+      "output_tail": "Bilingual parity: PASS (17 pairs)\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "scripts/check_colab_contract.py"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.6763112500775605,
+      "output_sha256": "sha256:4672dd2bd72cc9aa3b3ab83ffed7c53015df4bcfc52432e0e053ea77228351b3",
+      "output_tail": "Colab contract: PASS (hosted execution still requires populated remote)\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "-m",
+        "mkdocs",
+        "build",
+        "--strict"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.9892842089757323,
+      "output_sha256": "sha256:1da72abd64810d6af5e1276ddda6280c92efd64de7622339fd57ce49feede6d1",
+      "output_tail": "\n\u001b[31m │  ⚠  Warning from the Material for MkDocs team\u001b[0m\n\u001b[31m │\u001b[0m\n\u001b[31m │\u001b[0m  MkDocs 2.0, the underlying framework of Material for MkDocs,\n\u001b[31m │\u001b[0m  will introduce backward-incompatible changes, including:\n\u001b[31m │\u001b[0m\n\u001b[31m │  × \u001b[0mAll plugins will stop working – the plugin system has been removed\n\u001b[31m │  × \u001b[0mAll theme overrides will break – the theming system has been rewritten\n\u001b[31m │  × \u001b[0mNo migration path exists – existing projects cannot be upgraded\n\u001b[31m │  × \u001b[0mClosed contribution model – community members can't report bugs\n\u001b[31m │  × \u001b[0mCurrently unlicensed – unsuitable for production use\n\u001b[31m │\u001b[0m\n\u001b[31m │\u001b[0m  Our full analysis:\n\u001b[31m │\u001b[0m\n\u001b[31m │\u001b[0m  \u001b[4mhttps://squidfunk.github.io/mkdocs-material/blog/2026/02/18/mkdocs-2.0/\u001b[0m\n\u001b[0m\nINFO    -  Cleaning site directory\nINFO    -  Building documentation to directory: /private/tmp/rl-study-c12-clone.bDVZbI/RL-study/site\nINFO    -  Documentation built in 0.56 seconds\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "scripts/execute_notebooks.py",
+        "--language",
+        "all",
+        "--kernel-name",
+        "python3"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 52.73665816686116,
+      "output_sha256": "sha256:4f16733978a30083d7303d6a05a93432473ca950d45c75f844676b7cd4c757cb",
+      "output_tail": "[1/34] L00 ko success=True duration=2.15s\n[2/34] L01 ko success=True duration=1.41s\n[3/34] L02 ko success=True duration=1.52s\n[4/34] L03 ko success=True duration=1.42s\n[5/34] L04 ko success=True duration=1.55s\n[6/34] L05 ko success=True duration=1.32s\n[7/34] L06 ko success=True duration=1.28s\n[8/34] L07 ko success=True duration=1.27s\n[9/34] L08 ko success=True duration=1.29s\n[10/34] L09 ko success=True duration=1.27s\n[11/34] L10 ko success=True duration=2.60s\n[12/34] L11 ko success=True duration=1.28s\n[13/34] L12 ko success=True duration=1.25s\n[14/34] L13 ko success=True duration=1.43s\n[15/34] L14 ko success=True duration=1.20s\n[16/34] L15 ko success=True duration=1.86s\n[17/34] L16 ko success=True duration=1.37s\n[18/34] L00 en success=True duration=1.81s\n[19/34] L01 en success=True duration=1.44s\n[20/34] L02 en success=True duration=1.41s\n[21/34] L03 en success=True duration=1.35s\n[22/34] L04 en success=True duration=1.51s\n[23/34] L05 en success=True duration=1.25s\n[24/34] L06 en success=True duration=1.32s\n[25/34] L07 en success=True duration=1.27s\n[26/34] L08 en success=True duration=1.51s\n[27/34] L09 en success=True duration=1.45s\n[28/34] L10 en success=True duration=2.75s\n[29/34] L11 en success=True duration=1.25s\n[30/34] L12 en success=True duration=1.27s\n[31/34] L13 en success=True duration=1.41s\n[32/34] L14 en success=True duration=1.21s\n[33/34] L15 en success=True duration=1.86s\n[34/34] L16 en success=True duration=1.20s\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "scripts/check_notebook_contract.py",
+        "--language",
+        "all",
+        "--require-executed"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.6986026670783758,
+      "output_sha256": "sha256:cd28b9508f7a0267f1871df5acf6080f3c14b228172ef260c7602105de547121",
+      "output_tail": "Notebook contract: PASS (34 notebooks)\n"
+    },
+    {
+      "argv": [
+        "<python>",
+        "scripts/check_bilingual_parity.py"
+      ],
+      "returncode": 0,
+      "status": "passed",
+      "wall_seconds": 0.689974999986589,
+      "output_sha256": "sha256:3e7fddd3ba6e339eff75e7faeebab32da737d48b24b70fd15afc77777b0fb535",
+      "output_tail": "Bilingual parity: PASS (17 pairs)\n"
+    }
+  ],
+  "summary": {
+    "passed": 17,
+    "failed": 0,
+    "wall_seconds": 205.85117566701956
+  },
+  "working_tree_after": "M docs/research/C10_NOTEBOOK_EXECUTIONS.jsonl\n M notebooks/en/L00_rl_map.ipynb\n M notebooks/en/L01_probability_autograd.ipynb\n M notebooks/en/L02_causal_lm.ipynb\n M notebooks/en/L03_bandit.ipynb\n M notebooks/en/L04_mdp_bellman.ipynb\n M notebooks/en/L05_mc_td_q.ipynb\n M notebooks/en/L06_dqn.ipynb\n M notebooks/en/L07_reinforce.ipynb\n M notebooks/en/L08_actor_critic_gae_ppo.ipynb\n M notebooks/en/L09_llm_as_policy.ipynb\n M notebooks/en/L10_rlhf_ppo.ipynb\n M notebooks/en/L11_dpo.ipynb\n M notebooks/en/L12_grpo_rlvr.ipynb\n M notebooks/en/L13_dapo_variants.ipynb\n M notebooks/en/L14_real_model_profiles.ipynb\n M notebooks/en/L15_agentic_rl.ipynb\n M notebooks/en/L16_evaluation_capstone.ipynb\n M notebooks/ko/L00_rl_map.ipynb\n M notebooks/ko/L01_probability_autograd.ipynb\n M notebooks/ko/L02_causal_lm.ipynb\n M notebooks/ko/L03_bandit.ipynb\n M notebooks/ko/L04_mdp_bellman.ipynb\n M notebooks/ko/L05_mc_td_q.ipynb\n M notebooks/ko/L06_dqn.ipynb\n M notebooks/ko/L07_reinforce.ipynb\n M notebooks/ko/L08_actor_critic_gae_ppo.ipynb\n M notebooks/ko/L09_llm_as_policy.ipynb\n M notebooks/ko/L10_rlhf_ppo.ipynb\n M notebooks/ko/L11_dpo.ipynb\n M notebooks/ko/L12_grpo_rlvr.ipynb\n M notebooks/ko/L13_dapo_variants.ipynb\n M notebooks/ko/L14_real_model_profiles.ipynb\n M notebooks/ko/L15_agentic_rl.ipynb\n M notebooks/ko/L16_evaluation_capstone.ipynb",
+  "limitations": [
+    "GitHub-hosted CI and fresh hosted Colab remain pending and are not implied by this local clean-clone audit."
+  ]
+}

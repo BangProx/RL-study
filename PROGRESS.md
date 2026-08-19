@@ -366,3 +366,36 @@
     실행하지 않았으며 성공 badge·결과를 만들지 않음
 - 다음 작업: C12 local hygiene/release 문서·clean clone audit를 완료한 뒤,
   사용자 push 승인 시 populated remote에서 hosted CI와 Colab evidence를 수집
+
+## 2026-08-19 — C12 로컬 재현 감사 완료: hosted evidence 대기
+
+- 현재 checkpoint: C10/C11 hosted evidence gate; C12 local release audit 통과
+- release 준비:
+  - package/CFF version `0.1.0`, CHANGELOG, 알려진 한계와 release contract 완성
+  - secret pattern, file size, symlink, JSON finite 값, version/traceability/origin과
+    공개 community file을 자동 검사
+- clean-clone에서 발견하고 수정한 결함:
+  - 첫 감사에서 `.gitignore`의 `models/`가 `src/rl_study/models/`까지 제외해 실제
+    clone에 핵심 모듈 6개가 없는 문제를 발견
+  - 패턴을 top-level `/models/`로 한정하고 source package를 추적한 뒤 전체 pytest
+    146개, ruff, strict mypy를 재통과; 수정 commit `c29ad1c`
+  - sandbox 안의 Jupyter ZMQ socket 생성은 34/34가 동일 PermissionError로 거부되어
+    환경 제약으로 분리하고, 새 clone·새 venv의 비샌드박스 감사로 재검증
+- 최종 clean-clone 감사:
+  - 최초 `git status`가 빈 clone, branch `main`, commit
+    `c29ad1c4967b9411a68dd847d73b3e3b2502a890`, exact GitHub origin 확인
+  - macOS arm64, Python 3.10.12, PyTorch 2.13.0의 독립 venv에서 17/17 명령 통과,
+    총 205.851초, auditor peak RSS 195,493,888 byte
+  - pytest 146개, ruff, strict mypy 66 source, design/provenance/local-link/release,
+    notebook 34개와 17쌍 parity, Colab source, strict MkDocs 모두 통과
+  - 같은 감사에서 notebook 34/34를 각 fresh kernel로 재실행(52.737초)한 뒤
+    executed/parity contract를 다시 통과
+  - 명령별 반환 코드·시간·출력 SHA-256과 한계는
+    `docs/research/C12_FINAL_AUDIT.json`에 원자적으로 기록
+- 정직한 완료 경계:
+  - local status는 `local_pass_hosted_pending`; 이 감사는 GitHub-hosted CI나
+    fresh hosted Colab 성공을 뜻하지 않음
+  - R19는 exact origin/clean clone/no-force 조건으로 verified. R11/R17/R20은 첫
+    non-force push 후 hosted 실행 증거를 얻기 전까지 완료 처리하지 않음
+- 다음 작업: 사용자 승인 후 빈 origin을 다시 읽기 전용 확인하고 `main`을
+  non-force push한 뒤 3-OS CI/weekly job과 fresh Colab을 검증

@@ -1,6 +1,6 @@
 # RL-study 구현 Goal 계약서
 
-> 상태: **Goal 실행 중 / C11 로컬 완료, hosted Colab·CI 승인 대기**
+> 상태: **Goal 실행 중 / C12 로컬 감사 완료, hosted Colab·CI와 push 승인 대기**
 > 작성일: 2026-08-19 (Asia/Seoul)
 > 로컬 경로: `/Users/bangbyeonghun/Documents/nlp/RL-study`
 > 대상 원격: `https://github.com/BangProx/RL-study.git`

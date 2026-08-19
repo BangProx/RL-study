@@ -4,9 +4,9 @@ LLM 강화학습을 수식, 작은 PyTorch 구현, 실제 실행으로 잇는 �
 self-contained 강좌입니다. 현재는 승인된 [`GOAL.md`](GOAL.md)를 계약으로 삼아
 C0~C12 체크포인트를 순서대로 구현하고 있습니다.
 
-> 현재 상태: C1~C9 검증 완료. C10 한영 notebook 34개는 clean execution 완료,
-> C11 문서·report·CI는 로컬 검증 중입니다. Colab과 hosted CI 실행은 빈 원격
-> 저장소에 첫 push 승인이 필요해 대기 중입니다.
+> 현재 상태: C1~C9 검증 완료. C10·C11의 로컬 범위와 C12 clean-clone 감사는
+> 완료했습니다. Colab과 hosted CI 실행은 빈 원격 저장소에 첫 push 승인이
+> 필요해 대기 중입니다.
 
 ## 15분 quickstart
 
@@ -34,7 +34,9 @@ Agentic RL은 환경과 metric이 달라 TinyReasoning reward 그래프에 섞�
 artifact 읽기는 [15분 시작](docs/getting-started.md), 장치별 지원은
 [하드웨어 표](docs/hardware.md), 오류는 [문제 해결](docs/troubleshooting.md)을
 보세요. 날짜·환경·시간·artifact/checkpoint hash를 검증한 로컬 실행은
-[C11 demo evidence](docs/research/C11_DEMO_EVIDENCE.json)에 남겼습니다.
+[C11 demo evidence](docs/research/C11_DEMO_EVIDENCE.json)에 남겼습니다. 최종 후보
+commit의 독립 환경 17단계 감사 결과는
+[C12 final audit](docs/research/C12_FINAL_AUDIT.json)에 있습니다.
 
 현재 offline toy core는 classic RL, DPO, RLHF-PPO, GRPO, DAPO,
 RLOO/Dr. GRPO/GSPO와 Agentic RL의 학습·중단 재개·평가를 실행할 수 있습니다.

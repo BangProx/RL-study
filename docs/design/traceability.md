@@ -26,7 +26,7 @@
 | R16 | license/NOTICE/provenance 보존 | C1 audit §8 | LICENSE, NOTICE, provenance checker | copied/adapted 0, DAPO no-copy와 asset redistribution audit | verified |
 | R17 | tests/lint/type/parity/link/3OS/scheduled CI | notebook style §10 | tests/scripts/workflows | local 145 tests/static/parity/link 통과; hosted 3OS/schedule는 첫 push 대기 | designed |
 | R18 | README/MkDocs에서 사용자 경로 탐색 | curriculum + docs IA | README, MkDocs, hardware/troubleshooting | fresh venv journey, local/network links, strict MkDocs build | verified |
-| R19 | 올바른 origin·원격 이력 보존·hygiene | GOAL C0/C12 | Git metadata/community files | status/remote/diff/no-force evidence | C0 verified; final audit pending |
+| R19 | 올바른 origin·원격 이력 보존·hygiene | GOAL C0/C12 | Git metadata/community files | clean clone `c29ad1c`, `main`, exact origin, initial clean status, no force/push | verified |
 | R20 | 모든 matrix row verified/external-manual | 이 문서 | evidence auditor | no designed/pending row at C12 | designed |
 
 ## 알고리즘→식→코드→test 계획
