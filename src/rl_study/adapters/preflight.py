@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import importlib.metadata
-import os
 from dataclasses import asdict
 
 from rl_study.adapters.manifest import (
@@ -14,6 +13,7 @@ from rl_study.adapters.manifest import (
     model_cache_status,
 )
 from rl_study.errors import PreflightError
+from rl_study.platform_metrics import system_memory_bytes
 from rl_study.runtime import resolve_device
 
 LAPTOP_DEPENDENCIES = {
@@ -59,21 +59,6 @@ def _compatible(name: str, version: str | None) -> bool:
         return True
     minimum, maximum = constraints[name]
     return minimum <= parsed < maximum
-
-
-def _physical_memory_bytes() -> int | None:
-    for pages_name, page_size_name in (
-        ("SC_PHYS_PAGES", "SC_PAGE_SIZE"),
-        ("SC_PHYS_PAGES", "SC_PAGESIZE"),
-    ):
-        try:
-            pages = os.sysconf(pages_name)
-            page_size = os.sysconf(page_size_name)
-        except (ValueError, OSError):
-            continue
-        if isinstance(pages, int) and isinstance(page_size, int):
-            return pages * page_size
-    return None
 
 
 def qlora_capability(device: str) -> tuple[bool, str]:
@@ -192,7 +177,7 @@ def build_profile_preflight(
     if adapter == "qlora":
         passed, reason = qlora_capability(str(resolution.resolved))
         qlora = {"supported": passed, "reason": reason}
-    physical_memory = _physical_memory_bytes()
+    physical_memory = system_memory_bytes()
     warnings: list[str] = []
     if (
         physical_memory is not None

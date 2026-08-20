@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import ctypes
 import hashlib
 import json
 import os
@@ -16,7 +15,7 @@ import torch
 
 from rl_study.config import ExperimentConfig
 from rl_study.data.tiny_reasoning import GENERATOR_REVISION
-from rl_study.platform_metrics import peak_memory_bytes
+from rl_study.platform_metrics import peak_memory_bytes, system_memory_bytes
 
 
 def _file_sha256(path: Path) -> str | None:
@@ -44,38 +43,6 @@ def _git_state(root: Path) -> dict[str, object]:
         "dirty": bool(status.strip()),
         "diff_sha256": "sha256:" + hashlib.sha256(status.encode()).hexdigest(),
     }
-
-
-def _system_ram_bytes() -> int | None:
-    if platform.system() != "Windows":
-        try:
-            page_size = os.sysconf("SC_PAGE_SIZE")
-            physical_pages = os.sysconf("SC_PHYS_PAGES")
-        except (AttributeError, OSError, ValueError):
-            return None
-        return int(page_size * physical_pages)
-
-    class MemoryStatus(ctypes.Structure):
-        _fields_ = [
-            ("length", ctypes.c_ulong),
-            ("memory_load", ctypes.c_ulong),
-            ("total_physical", ctypes.c_ulonglong),
-            ("available_physical", ctypes.c_ulonglong),
-            ("total_page_file", ctypes.c_ulonglong),
-            ("available_page_file", ctypes.c_ulonglong),
-            ("total_virtual", ctypes.c_ulonglong),
-            ("available_virtual", ctypes.c_ulonglong),
-            ("available_extended_virtual", ctypes.c_ulonglong),
-        ]
-
-    loader = getattr(ctypes, "windll", None)
-    if loader is None:
-        return None
-    status = MemoryStatus()
-    status.length = ctypes.sizeof(status)
-    if not loader.kernel32.GlobalMemoryStatusEx(ctypes.byref(status)):
-        return None
-    return int(status.total_physical)
 
 
 def _device_memory_bytes(device: str) -> int | None:
@@ -135,7 +102,7 @@ def build_experiment_card(
             "torch": torch.__version__,
             "device": config.training.device,
             "dtype": "float32",
-            "ram_bytes": _system_ram_bytes(),
+            "ram_bytes": system_memory_bytes(),
             "vram_bytes": device_memory,
             "vram_note": (
                 "not applicable or unavailable"
