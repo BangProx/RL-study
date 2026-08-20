@@ -49,6 +49,7 @@ SECRET_PATTERNS = {
     "Slack token": re.compile("xox" + r"[abprs]-[A-Za-z0-9-]{20,}"),
     "private key": re.compile("BEGIN " + r"(?:RSA |EC |OPENSSH )?PRIVATE KEY"),
 }
+EXPECTED_REPOSITORY_URL = "https://github.com/BangProx/RL-study"
 
 
 def _candidate_files() -> list[Path]:
@@ -124,6 +125,13 @@ def _git(*arguments: str) -> str:
     return completed.stdout.strip()
 
 
+def _canonical_repository_url(value: str) -> str:
+    canonical = value.strip().rstrip("/")
+    if canonical.endswith(".git"):
+        canonical = canonical[:-4]
+    return canonical
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--allow-hosted-pending", action="store_true")
@@ -175,9 +183,9 @@ def main() -> None:
     statuses = _traceability(args.allow_hosted_pending)
     research_reports = _research_claims()
     assert _git("branch", "--show-current") == "main"
-    assert _git("remote", "get-url", "origin") == (
-        "https://github.com/BangProx/RL-study.git"
-    )
+    assert _canonical_repository_url(
+        _git("remote", "get-url", "origin")
+    ) == EXPECTED_REPOSITORY_URL
     assert "force" not in (ROOT / ".github/workflows/ci.yml").read_text(
         encoding="utf-8"
     ).lower()

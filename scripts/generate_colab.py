@@ -111,12 +111,25 @@ print({"repo": REPO_URL, "commit": commit, "cwd": str(Path.cwd())})""",
         _markdown(
             """## 2. Install
 
-기본 package만 editable install합니다. optional model framework는 마지막 opt-in cell 전까지 설치하지 않습니다.""",
+먼저 프로젝트 기준 PyTorch의 **CPU wheel**을 공식 index에서 설치한 뒤 이 저장소를 editable install합니다. 이렇게 하면 무료 CPU runtime에서 불필요한 CUDA wheel을 내려받지 않으면서도 프로젝트가 검증한 버전을 지킵니다. optional model framework는 마지막 opt-in cell 전까지 설치하지 않습니다.""",
             "colab-install-note",
             "COLAB.S03.C01",
         ),
         _code(
-            """install = subprocess.run(
+            """torch_install = subprocess.run(
+    [
+        sys.executable, "-m", "pip", "install",
+        "--index-url", "https://download.pytorch.org/whl/cpu",
+        "torch==2.13.0",
+    ],
+    check=True,
+    capture_output=True,
+    text=True,
+)
+print("torch_cpu_install=passed")
+print("\\n".join(torch_install.stdout.splitlines()[-8:]))
+
+install = subprocess.run(
     [sys.executable, "-m", "pip", "install", "-e", "."],
     check=True,
     capture_output=True,
@@ -147,7 +160,9 @@ print("\\n".join(install.stdout.splitlines()[-8:]))""",
 )
 print("toy_demo=passed")
 print("\\n".join(toy.stdout.splitlines()[-20:]))
-assert '"status": "foundation-smoke"' in toy.stdout
+toy_payload = json.loads(toy.stdout)
+assert toy_payload["status"] == "completed"
+assert toy_payload["result_origin"] == "local_executed"
 
 import torch
 

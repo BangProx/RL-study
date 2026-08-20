@@ -6,7 +6,6 @@ import html
 import json
 import os
 import platform
-import resource
 import tempfile
 import time
 from collections.abc import Mapping
@@ -25,6 +24,7 @@ from rl_study.config import ExperimentConfig
 from rl_study.data import build_tiny_reasoning, verifier_reward
 from rl_study.models import TinyCausalLM, TinyTokenizer
 from rl_study.models.sequence import response_token_log_probs
+from rl_study.platform_metrics import peak_memory_bytes
 from rl_study.training.agentic_runner import train_agentic
 from rl_study.training.alignment_runner import (
     AlignmentRunResult,
@@ -49,11 +49,6 @@ class DemoArtifacts:
     checkpoints: tuple[Path, ...]
     experiment_cards: tuple[Path, ...]
     summary: dict[str, object]
-
-
-def _peak_memory_bytes() -> int:
-    maximum = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    return int(maximum if platform.system() == "Darwin" else maximum * 1024)
 
 
 def _atomic_text(path: Path, value: str) -> None:
@@ -498,7 +493,7 @@ def run_demo(
             "python": platform.python_version(),
             "torch": torch.__version__,
             "device": "cpu",
-            "peak_memory_bytes": _peak_memory_bytes(),
+            "peak_memory_bytes": peak_memory_bytes(),
         },
         "timing": {
             "training_and_diagnostics_seconds": elapsed,

@@ -8,7 +8,6 @@ import hashlib
 import json
 import os
 import platform
-import resource
 import subprocess
 import sys
 import tempfile
@@ -18,6 +17,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import torch
+
+from rl_study.platform_metrics import peak_memory_bytes
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -34,11 +35,6 @@ def _git(*arguments: str) -> str:
         capture_output=True,
         text=True,
     ).stdout.strip()
-
-
-def _peak_memory_bytes() -> int:
-    maximum = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    return int(maximum if platform.system() == "Darwin" else maximum * 1024)
 
 
 def _run(arguments: Sequence[str]) -> dict[str, object]:
@@ -175,7 +171,7 @@ def main() -> int:
             "python": platform.python_version(),
             "torch": torch.__version__,
             "interpreter": sys.executable,
-            "peak_auditor_memory_bytes": _peak_memory_bytes(),
+            "peak_auditor_memory_bytes": peak_memory_bytes(),
         },
         "hosted_pending_allowed": args.allow_hosted_pending,
         "commands": results,

@@ -7,7 +7,6 @@ import hashlib
 import json
 import os
 import platform
-import resource
 import subprocess
 import tempfile
 from collections.abc import Mapping, Sequence
@@ -17,6 +16,7 @@ import torch
 
 from rl_study.config import ExperimentConfig
 from rl_study.data.tiny_reasoning import GENERATOR_REVISION
+from rl_study.platform_metrics import peak_memory_bytes
 
 
 def _file_sha256(path: Path) -> str | None:
@@ -44,11 +44,6 @@ def _git_state(root: Path) -> dict[str, object]:
         "dirty": bool(status.strip()),
         "diff_sha256": "sha256:" + hashlib.sha256(status.encode()).hexdigest(),
     }
-
-
-def _peak_memory_bytes() -> int:
-    maximum = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    return int(maximum if platform.system() == "Darwin" else maximum * 1024)
 
 
 def _system_ram_bytes() -> int | None:
@@ -147,7 +142,7 @@ def build_experiment_card(
                 if device_memory is None
                 else "CUDA device total memory"
             ),
-            "peak_memory_bytes": _peak_memory_bytes(),
+            "peak_memory_bytes": peak_memory_bytes(),
         },
         "model": {
             "id": config.model.policy,

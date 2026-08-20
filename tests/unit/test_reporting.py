@@ -30,6 +30,8 @@ def test_toy_experiment_card_records_environment_and_base_lock(
     assert isinstance(environment, dict)
     assert isinstance(environment["ram_bytes"], int)
     assert environment["ram_bytes"] > 0
+    assert isinstance(environment["peak_memory_bytes"], int)
+    assert environment["peak_memory_bytes"] > 0
     assert "vram_bytes" in environment
     assert card["result_origin"] == "local_executed"
     expected = "sha256:" + hashlib.sha256(

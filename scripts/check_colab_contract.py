@@ -62,6 +62,16 @@ def main() -> None:
         errors.append("real-model cell needs network and server tags")
     if "--accept-download" not in optional.source:
         errors.append("real-model download requires explicit approval flag")
+    install = next(cell for cell in notebook.cells if cell.id == "colab-install")
+    if "https://download.pytorch.org/whl/cpu" not in install.source:
+        errors.append("free CPU runtime must use the official PyTorch CPU wheel index")
+    if "torch==2.13.0" not in install.source:
+        errors.append("Colab must install the C1-audited PyTorch version")
+    toy = next(cell for cell in notebook.cells if cell.id == "colab-toy")
+    if 'toy_payload["status"] == "completed"' not in toy.source:
+        errors.append("toy cell must assert the current demo completion contract")
+    if 'toy_payload["result_origin"] == "local_executed"' not in toy.source:
+        errors.append("toy cell must reject non-executed or fallback results")
     if "assert evidence[\"toy_demo\"] == 'passed'" not in joined:
         errors.append("final evidence assertion is missing")
     if errors:
