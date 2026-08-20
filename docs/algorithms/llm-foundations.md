@@ -160,3 +160,7 @@ exact 결과는 [`C5_LLM_FOUNDATION_BENCHMARK.json`](../research/C5_LLM_FOUNDATI
 
 C5가 보장하는 것은 mask/log-prob shape, SFT/RM finite training, deterministic
 verifier, held-out pair 평가와 frozen-role gradient contract다.
+
+---
+
+[← 고전 RL](classic.md) · [강좌 지도](../course-map.md) · [L02 Causal LM](../../notebooks/ko/L02_causal_lm.ipynb) · [L09 LLM policy](../../notebooks/ko/L09_llm_as_policy.ipynb) · [다음: RLHF-PPO →](rlhf-ppo.md)

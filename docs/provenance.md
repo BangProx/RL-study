@@ -11,6 +11,9 @@
    사람이 읽는 근거
 3. `experiment-card.json`: local 실행의 Git/config/environment/budget/result
 
+C1~C9 실행 파일의 역할과 C3 번호가 비어 있는 이유는
+[실행 근거 지도](research/README.md)에 정리했습니다.
+
 ## 재사용 분류
 
 | 분류 | 의미 |

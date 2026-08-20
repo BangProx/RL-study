@@ -89,3 +89,7 @@ assert math.isclose(out.loss.item(), -math.log(1 / (1 + math.exp(-1))), rel_tol=
 - `dpo-2023`: 원 논문 objective와 KL-constrained 유도
 - `repo-dpo`: 공식 연구 구현의 부호·batching 교차검산
 - `framework-trl`: 현대 trainer의 label smoothing/reduction 차이 감사
+
+---
+
+[← RLHF-PPO](rlhf-ppo.md) · [강좌 지도](../course-map.md) · [L11 notebook](../../notebooks/ko/L11_dpo.ipynb) · [다음: GRPO 계열 →](grpo-family.md)

@@ -119,3 +119,7 @@ assert torch.allclose(out.token_rewards, torch.tensor([[-0.1, 0.95]]))
 - `instructgpt-2022`: SFT → RM → PPO 파이프라인
 - `ppo-2017`: clipped surrogate와 여러 update epoch
 - `repo-summarize-from-feedback`, `framework-trl`: 역사/현대 구현 차이 교차검산
+
+---
+
+[← LLM 기반](llm-foundations.md) · [강좌 지도](../course-map.md) · [L10 notebook](../../notebooks/ko/L10_rlhf_ppo.ipynb) · [다음: DPO →](dpo.md)

@@ -41,7 +41,12 @@ class NetworkResult:
 def _occurrences(root: Path) -> list[LinkOccurrence]:
     records: list[LinkOccurrence] = []
     for path in sorted(root.rglob("*.md")):
-        if any(part in {".git", ".venv", "site", "artifacts"} for part in path.parts):
+        if path.name in {"GOAL.md", "PROGRESS.md"}:
+            continue
+        if any(
+            part in {".git", ".internal", ".venv", "site", "artifacts"}
+            for part in path.parts
+        ):
             continue
         text = path.read_text(encoding="utf-8")
         for line_number, line in enumerate(text.splitlines(), start=1):

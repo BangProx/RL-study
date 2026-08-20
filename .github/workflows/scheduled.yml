@@ -26,13 +26,14 @@ jobs:
       - name: Check external and local links
         run: python scripts/check_links.py --network
       - name: Execute every notebook in a fresh kernel
-        run: python scripts/execute_notebooks.py --language all --kernel-name python3
+        run: |
+          python scripts/execute_notebooks.py --language all --kernel-name python3
+          python scripts/summarize_notebook_runs.py
       - name: Revalidate parity, outputs, Colab source, and site
         run: |
           python scripts/check_notebook_contract.py --language all --require-executed
           python scripts/check_bilingual_parity.py
           python scripts/check_colab_contract.py
-          python scripts/check_hosted_evidence.py
           python -m mkdocs build --strict
       - name: Upload dated audit evidence
         if: always()
@@ -40,10 +41,11 @@ jobs:
         with:
           name: scheduled-learning-audit-${{ github.run_id }}
           path: |
-            docs/research/C10_NOTEBOOK_EXECUTIONS.jsonl
-            docs/research/C10_NOTEBOOK_REPORT.json
+            .internal/evidence/C10_NOTEBOOK_EXECUTIONS.jsonl
+            .internal/evidence/C10_NOTEBOOK_REPORT.json
             notebooks/ko
             notebooks/en
             site
+          include-hidden-files: true
           if-no-files-found: error
           retention-days: 14

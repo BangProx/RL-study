@@ -95,3 +95,7 @@ C7 toy report의 overlong-only exact match `0.0625`, dynamic variant `0.03125`�
 - `dapo-2025`: 네 요소의 식과 동기
 - `framework-verl`: 독립 라이선스 modern variant naming 교차검산
 - `repo-dapo`: 존재와 논문 context만 기록; 구현 source로 사용하지 않음
+
+---
+
+[← GRPO 계열](grpo-family.md) · [강좌 지도](../course-map.md) · [L13 notebook](../../notebooks/ko/L13_dapo_variants.ipynb) · [다음: Agentic RL →](agentic-rl.md)

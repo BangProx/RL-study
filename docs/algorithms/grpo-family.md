@@ -128,3 +128,7 @@ exact match로 알고리즘 순위를 만들 수 없으며, 결과의 주 목적
 - `gspo-2025`: sequence-level importance ratio와 clipping
 - `repo-deepseek-math`, `repo-understand-r1-zero`, `framework-trl`,
   `framework-verl`: variant 이름과 현대 framework 차이의 교차검산
+
+---
+
+[← DPO](dpo.md) · [강좌 지도](../course-map.md) · [L12 notebook](../../notebooks/ko/L12_grpo_rlvr.ipynb) · [다음: DAPO →](dapo.md)

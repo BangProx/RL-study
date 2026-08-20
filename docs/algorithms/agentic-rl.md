@@ -151,3 +151,7 @@ Fast Downward의 GPL-3.0 경계도 core와 분리했다. 출처 ID는 `benchmark
 - 선택 adapter: `adapters/alfworld.py`
 - 검증: `tests/unit/test_agentic_*`, `tests/unit/test_alfworld_adapter.py`,
   `tests/integration/test_agentic_runner.py`
+
+---
+
+[← DAPO](dapo.md) · [강좌 지도](../course-map.md) · [L15 notebook](../../notebooks/ko/L15_agentic_rl.ipynb) · [처음: 알고리즘 카드](cards.md)

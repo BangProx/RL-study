@@ -57,5 +57,4 @@ Offline RL, model-based RL, continuous control, multi-agent RL, imitation learni
 LLM RL과의 관계를 설명하지만 각각의 대규모 benchmark를 구현하거나 재현하지
 않습니다. 모든 RL 분야를 망라했다는 주장이 아닙니다.
 
-검증 상태는 [traceability matrix](design/traceability.md), 실행 실패와 다음 시도는
-repository의 `PROGRESS.md`와 `docs/research` evidence를 확인하세요.
+세부 실행 조건과 측정값은 `docs/research`의 evidence를 확인하세요.

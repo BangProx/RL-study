@@ -257,3 +257,7 @@ local 기본 run은 Q-learning, DQN, REINFORCE, actor-critic, PPO가 모두 succ
 
 의미하는 것은 implementation이 finite update를 만들고, 이 저장소의 작은 MDP를
 학습하며, 중단/재개가 연속 실행과 정확히 같다는 sanity evidence다.
+
+---
+
+[← 알고리즘 카드](cards.md) · [강좌 지도](../course-map.md) · [L03~L08 시작](../../notebooks/ko/L03_bandit.ipynb) · [다음: LLM 기반 →](llm-foundations.md)

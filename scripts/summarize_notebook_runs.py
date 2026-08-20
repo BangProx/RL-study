@@ -10,8 +10,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "docs/research/C10_NOTEBOOK_EXECUTIONS.jsonl"
-REPORT = ROOT / "docs/research/C10_NOTEBOOK_REPORT.json"
+MANIFEST = ROOT / ".internal/evidence/C10_NOTEBOOK_EXECUTIONS.jsonl"
+REPORT = ROOT / ".internal/evidence/C10_NOTEBOOK_REPORT.json"
 
 
 def main() -> None:

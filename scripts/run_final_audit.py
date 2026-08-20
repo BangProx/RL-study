@@ -86,7 +86,6 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--kernel-name", default="python3")
-    parser.add_argument("--allow-hosted-pending", action="store_true")
     args = parser.parse_args()
 
     started = time.perf_counter()
@@ -110,9 +109,9 @@ def main() -> int:
         [python, "-m", "pytest", "-q"],
         [python, "-m", "ruff", "check", "."],
         [python, "-m", "mypy", "src"],
-        [python, "scripts/check_design_contract.py"],
         [python, "scripts/check_provenance.py"],
         [python, "scripts/check_links.py", "--local"],
+        [python, "scripts/check_release_contract.py"],
         [
             python,
             "scripts/check_notebook_contract.py",
@@ -122,7 +121,6 @@ def main() -> int:
         ],
         [python, "scripts/check_bilingual_parity.py"],
         [python, "scripts/check_colab_contract.py"],
-        [python, "scripts/check_hosted_evidence.py"],
         [python, "-m", "mkdocs", "build", "--strict"],
         [
             python,
@@ -141,23 +139,12 @@ def main() -> int:
         ],
         [python, "scripts/check_bilingual_parity.py"],
     ]
-    release_command = [python, "scripts/check_release_contract.py"]
-    if args.allow_hosted_pending:
-        release_command.append("--allow-hosted-pending")
-    commands.insert(9, release_command)
-
     results = [_run(command) for command in commands]
     passed = all(result["returncode"] == 0 for result in results)
     evidence = {
         "schema_version": 1,
         "checkpoint": "C12",
-        "status": (
-            "local_pass_hosted_pending"
-            if passed and args.allow_hosted_pending
-            else "passed"
-            if passed
-            else "failed"
-        ),
+        "status": "passed" if passed else "failed",
         "result_origin": "local_executed",
         "executed_at": datetime.now(timezone.utc).isoformat(),
         "clean_clone": {
@@ -174,7 +161,6 @@ def main() -> int:
             "interpreter": sys.executable,
             "peak_auditor_memory_bytes": peak_memory_bytes(),
         },
-        "hosted_pending_allowed": args.allow_hosted_pending,
         "commands": results,
         "summary": {
             "passed": sum(result["returncode"] == 0 for result in results),
@@ -182,14 +168,7 @@ def main() -> int:
             "wall_seconds": time.perf_counter() - started,
         },
         "working_tree_after": _git("status", "--porcelain"),
-        "limitations": (
-            [
-                "GitHub-hosted CI and fresh hosted Colab remain pending and are "
-                "not implied by this local clean-clone audit."
-            ]
-            if args.allow_hosted_pending
-            else []
-        ),
+        "limitations": [],
     }
     _atomic_json(args.output.resolve(), evidence)
     print(

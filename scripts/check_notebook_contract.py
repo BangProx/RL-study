@@ -92,6 +92,11 @@ def check(
     unknown = set(declared_sources) - source_ids
     if unknown:
         _fail(errors, path, f"unknown root source IDs: {sorted(unknown)}")
+    learning_doc = metadata.get("learning_doc")
+    if not isinstance(learning_doc, str) or not learning_doc.startswith("docs/"):
+        _fail(errors, path, "learning_doc must be a repository docs path")
+    elif not (ROOT / learning_doc).is_file():
+        _fail(errors, path, f"learning_doc does not exist: {learning_doc}")
 
     headings = [
         line
@@ -172,6 +177,18 @@ def check(
     for word in required_words:
         if word not in combined_markdown:
             _fail(errors, path, f"missing learning-rhythm marker {word!r}")
+    if (
+        isinstance(learning_doc, str)
+        and f"../../{learning_doc}" not in combined_markdown
+    ):
+        _fail(errors, path, "Next Steps must link the declared learning_doc")
+    expected_course_map = (
+        "../../docs/course-map.md"
+        if language == "ko"
+        else "../../docs/course-map.en.md"
+    )
+    if expected_course_map not in combined_markdown:
+        _fail(errors, path, "Next Steps must link the language course map")
     if combined_markdown.count("⏱") != 3:
         _fail(errors, path, "expected exactly three timed micro-sections")
     labels = (

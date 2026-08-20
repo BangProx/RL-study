@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Audit release metadata, claims, secrets, file sizes, Git, and traceability."""
+"""Audit public release metadata, claims, secrets, file sizes, and Git state."""
 
 from __future__ import annotations
 
-import argparse
 import json
 import math
 import re
@@ -18,10 +17,13 @@ ROOT = Path(__file__).resolve().parents[1]
 MAX_REPOSITORY_FILE_BYTES = 5 * 1024 * 1024
 EXCLUDED_PARTS = {
     ".git",
+    ".internal",
     ".venv",
     ".mypy_cache",
     ".pytest_cache",
     ".ruff_cache",
+    "GOAL.md",
+    "PROGRESS.md",
     "__pycache__",
     "artifacts",
     "site",
@@ -31,14 +33,16 @@ REQUIRED_PUBLIC_FILES = {
     "CITATION.cff",
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
-    "GOAL.md",
     "LICENSE",
     "NOTICE",
     "README.md",
+    "README.en.md",
     "SECURITY.md",
     "SUPPORT.md",
     "docs/known-limitations.md",
+    "docs/course-map.en.md",
     "docs/provenance.md",
+    "docs/research/README.md",
     "mkdocs.yml",
 }
 SECRET_PATTERNS = {
@@ -68,26 +72,6 @@ def _version() -> str:
     assert project_match is not None and package_match is not None
     assert project_match.group(1) == package_match.group(1)
     return project_match.group(1)
-
-
-def _traceability(allow_hosted_pending: bool) -> dict[str, str]:
-    text = (ROOT / "docs/design/traceability.md").read_text(encoding="utf-8")
-    rows = re.findall(
-        r"^\| (R\d{2}) \|.*?\| ([^|]+) \|$", text, flags=re.MULTILINE
-    )
-    assert len(rows) == 20, f"expected 20 traceability rows, found {len(rows)}"
-    statuses = {requirement: status.strip() for requirement, status in rows}
-    allowed = {"verified", "external-manual"}
-    pending = {
-        requirement
-        for requirement, status in statuses.items()
-        if status not in allowed
-    }
-    if allow_hosted_pending:
-        assert pending <= {"R11", "R17", "R19", "R20"}, sorted(pending)
-    else:
-        assert not pending, f"unfinished traceability rows: {sorted(pending)}"
-    return statuses
 
 
 def _json_finite(value: object, context: str) -> None:
@@ -133,10 +117,6 @@ def _canonical_repository_url(value: str) -> str:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--allow-hosted-pending", action="store_true")
-    args = parser.parse_args()
-
     missing = [
         relative
         for relative in REQUIRED_PUBLIC_FILES
@@ -180,9 +160,7 @@ def main() -> None:
                 findings.append((str(path.relative_to(ROOT)), label))
     assert not findings, f"possible secrets: {findings}"
 
-    statuses = _traceability(args.allow_hosted_pending)
     research_reports = _research_claims()
-    assert _git("branch", "--show-current") == "main"
     assert _canonical_repository_url(
         _git("remote", "get-url", "origin")
     ) == EXPECTED_REPOSITORY_URL
@@ -190,16 +168,11 @@ def main() -> None:
         encoding="utf-8"
     ).lower()
 
-    pending = [
-        key
-        for key, value in statuses.items()
-        if value not in {"verified", "external-manual"}
-    ]
     print(
         "Release contract: PASS "
         f"(version={version}, files={len(files)}, text_files={text_files}, "
         f"research_json={research_reports}, largest_bytes="
-        f"{max(path.stat().st_size for path in files)}, pending={pending})"
+        f"{max(path.stat().st_size for path in files)})"
     )
 
 

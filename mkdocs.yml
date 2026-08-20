@@ -6,6 +6,9 @@ repo_name: BangProx/RL-study
 edit_uri: edit/main/docs/
 copyright: Copyright 2026 BangProx and RL-study contributors · Apache-2.0
 
+hooks:
+  - scripts/mkdocs_hooks.py
+
 theme:
   name: material
   language: ko
@@ -35,7 +38,9 @@ nav:
   - 홈: index.md
   - 15분 시작: getting-started.md
   - 강좌 지도: course-map.md
+  - English course map: course-map.en.md
   - 수학 최소 도구함: math.md
+  - 용어집: glossary.md
   - 알고리즘:
       - 한눈에 비교: algorithms/cards.md
       - 고전 RL: algorithms/classic.md
@@ -50,13 +55,9 @@ nav:
       - Laptop·server 상세: profiles/laptop-server.md
       - 문제 해결: troubleshooting.md
       - 알려진 한계: known-limitations.md
-  - 연구·재현성:
+  - 참고·재현성:
+      - 실행 근거 읽기: research/README.md
       - 출처와 provenance: provenance.md
-      - 용어집: glossary.md
-      - 요구사항 추적: design/traceability.md
-      - 교육 설계: design/curriculum.md
-      - Notebook 계약: design/notebook-style.md
-      - 기술 구조: design/architecture.md
       - 문헌 감사: research/C1_SOURCE_AUDIT.md
 
 markdown_extensions:

@@ -47,6 +47,7 @@ def main() -> None:
             "source_ids",
             "network_required",
             "seed",
+            "learning_doc",
         )
         for field in root_fields:
             if ko.metadata["rl_study"][field] != en.metadata["rl_study"][field]:

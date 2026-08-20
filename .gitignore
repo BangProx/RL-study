@@ -50,3 +50,6 @@ site/
 # Supplements
 GOAL.md
 PROGRESS.md
+
+# Local maintainer documents
+.internal/

@@ -3,6 +3,8 @@
 알고리즘 이름보다 **데이터가 어디서 오고, 무엇을 baseline으로 빼며, 어떤
 parameter가 update되는지** 먼저 비교하세요.
 
+![PPO, DPO, GRPO, DAPO의 데이터, baseline, 목적함수와 update 경계](../assets/alignment-loss-map.svg)
+
 ## 한눈에 비교
 
 | 알고리즘 | 데이터 | 핵심 target/advantage | update 대상 | 대표 함정 |
@@ -109,3 +111,7 @@ parameter가 update되는지** 먼저 비교하세요.
   hierarchical credit.
 - **검사:** tool output mask, stale policy version, invalid action, timeout, reward hacking.
 - **출처:** `agent-lightning-2025`, `agent-r1-2025`.
+
+---
+
+[강좌 지도](../course-map.md) · [L00 전체 지도](../../notebooks/ko/L00_rl_map.ipynb) · [다음: 고전 RL →](classic.md)

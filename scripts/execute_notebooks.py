@@ -20,7 +20,7 @@ import psutil
 from nbclient import NotebookClient
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "docs/research/C10_NOTEBOOK_EXECUTIONS.jsonl"
+MANIFEST = ROOT / ".internal/evidence/C10_NOTEBOOK_EXECUTIONS.jsonl"
 
 
 def _sha256(path: Path) -> str:

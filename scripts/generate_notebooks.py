@@ -34,6 +34,26 @@ TEST_IDS = {
     "L16": ["test_alignment_comparison_audits_shared_start_and_prompts"],
 }
 
+LESSON_DOCS = {
+    "L00": "docs/algorithms/cards.md",
+    "L01": "docs/math.md",
+    "L02": "docs/algorithms/llm-foundations.md",
+    "L03": "docs/algorithms/classic.md",
+    "L04": "docs/algorithms/classic.md",
+    "L05": "docs/algorithms/classic.md",
+    "L06": "docs/algorithms/classic.md",
+    "L07": "docs/algorithms/classic.md",
+    "L08": "docs/algorithms/classic.md",
+    "L09": "docs/algorithms/llm-foundations.md",
+    "L10": "docs/algorithms/rlhf-ppo.md",
+    "L11": "docs/algorithms/dpo.md",
+    "L12": "docs/algorithms/grpo-family.md",
+    "L13": "docs/algorithms/dapo.md",
+    "L14": "docs/profiles/laptop-server.md",
+    "L15": "docs/algorithms/agentic-rl.md",
+    "L16": "docs/research/README.md",
+}
+
 DEMO_CODE = {
     "L00": """logits = torch.zeros(2, requires_grad=True)
 optimizer = torch.optim.SGD([logits], lr=0.4)
@@ -569,6 +589,10 @@ def _markdown_text(spec: dict[str, Any], language: str) -> dict[str, str]:
     objective_lines = "\n".join(f"- {item}" for item in objectives)
     tests = ", ".join(f"`{item}`" for item in TEST_IDS[spec["id"]])
     guide = LESSON_GUIDE[spec["id"]]
+    detail_link = f"../../{LESSON_DOCS[spec['id']]}"
+    course_map_link = (
+        "../../docs/course-map.md" if ko else "../../docs/course-map.en.md"
+    )
 
     def localized(key: str) -> str:
         value = guide[key]
@@ -635,8 +659,10 @@ def _markdown_text(spec: dict[str, Any], language: str) -> dict[str, str]:
         ),
         "next": (
             f"## Next Steps\n\n1. {localized('next')}\n2. `[필수/CORE]` assertion을 한 번 깨뜨리고 오류를 읽습니다.\n3. package test를 열어 notebook의 작은 식과 production guard를 연결합니다."
+            f"\n\n[상세 구현 문서]({detail_link}) · [강좌 지도]({course_map_link})"
             if ko
             else f"## Next Steps\n\n1. {localized('next')}\n2. Break one `[CORE]` assertion and read the failure.\n3. Open the package test and connect the notebook equation to its production guard."
+            f"\n\n[Implementation note]({detail_link}) · [Course map]({course_map_link})"
         ),
         "sources": "## Sources\n\n" + "\n".join(
             f"- `{source_id}` — `docs/sources.yml`" for source_id in spec["sources"]
@@ -718,6 +744,7 @@ def generate(spec: dict[str, Any], language: str) -> Path:
             "source_ids": spec["sources"],
             "network_required": False,
             "seed": 42,
+            "learning_doc": LESSON_DOCS[lesson],
             "generated_from": "lessons/catalog.yml",
         },
     }

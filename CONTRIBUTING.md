@@ -36,8 +36,7 @@ Windows에서는 `.venv\Scripts\python`을 사용하세요.
 ## Notebook 리듬
 
 5~8분 micro-section, 예측, 짧은 실행, 왜/대안, 흔한 실수, 즉시 검사, 회상 문제를
-지킵니다. 기존 metadata와 stable lesson ID를 임의로 바꾸지 마세요. 전체 계약은
-`docs/design/notebook-style.md`에 있습니다.
+지킵니다. 기존 metadata와 stable lesson ID를 임의로 바꾸지 마세요.
 
 ## Pull request
 
