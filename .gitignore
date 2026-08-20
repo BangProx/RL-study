@@ -46,3 +46,7 @@ Thumbs.db
 
 # Documentation build
 site/
+
+# Supplements
+GOAL.md
+PROGRESS.md
