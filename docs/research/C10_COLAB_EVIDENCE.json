@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "checkpoint": "C10",
+  "status": "passed",
+  "result_origin": "hosted_executed",
+  "recorded_at": "2026-08-20T02:08:52Z",
+  "notebook": {
+    "path": "notebooks/colab/RL_study_quickstart.ipynb",
+    "url": "https://colab.research.google.com/github/BangProx/RL-study/blob/main/notebooks/colab/RL_study_quickstart.ipynb",
+    "source_commit": "810205e55873c023a6d27accf9b72e9d1b7a9477"
+  },
+  "environment": {
+    "service": "Google Colab",
+    "runtime": "fresh CPU runtime",
+    "started_at": "2026-08-20T02:01:20.052727+00:00",
+    "python": "3.12.13",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+    "torch": "2.13.0+cpu",
+    "has_cuda_hint": false,
+    "network_required": true,
+    "repository": "https://github.com/BangProx/RL-study.git",
+    "working_directory": "/content/RL-study"
+  },
+  "steps": [
+    {
+      "name": "clone exact public repository state",
+      "status": "passed",
+      "observed_commit": "810205e55873c023a6d27accf9b72e9d1b7a9477"
+    },
+    {
+      "name": "install audited CPU PyTorch and editable project",
+      "status": "passed",
+      "observed_torch": "2.13.0+cpu",
+      "wheel_index": "https://download.pytorch.org/whl/cpu"
+    },
+    {
+      "name": "run offline toy training and diagnostics",
+      "status": "passed",
+      "toy_demo": "passed",
+      "demo_status": "completed",
+      "demo_result_origin": "local_executed",
+      "fallback_used": false,
+      "experiment_cards": 5,
+      "training_and_diagnostics_seconds": 47.765065317999984,
+      "wall_seconds": 56.607415261999904,
+      "simple_policy_p_good_before": 0.5,
+      "simple_policy_p_good_after": 0.916
+    },
+    {
+      "name": "optional real-model smoke",
+      "status": "skipped",
+      "reason": "RUN_REAL_MODEL_SMOKE remained False in the free CPU verification; no model download or GPU claim was made"
+    },
+    {
+      "name": "final evidence assertions",
+      "status": "passed",
+      "assertions": [
+        "toy_demo == passed",
+        "demo_status == completed",
+        "demo_result_origin == local_executed",
+        "fallback_used == false",
+        "source commit equals cloned HEAD"
+      ]
+    }
+  ],
+  "observation_method": "Interactive browser execution in a newly reset Colab runtime; values above were read from the final evidence cell.",
+  "limitations": [
+    "The optional public-model smoke was deliberately not enabled on the free CPU runtime.",
+    "Colab images and free accelerator availability can drift; the source contract and scheduled audit remain the durable regression guards.",
+    "This is execution evidence, not a claim of paper-scale reproduction or GPU support."
+  ]
+}

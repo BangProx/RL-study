@@ -32,6 +32,7 @@ jobs:
           python scripts/check_notebook_contract.py --language all --require-executed
           python scripts/check_bilingual_parity.py
           python scripts/check_colab_contract.py
+          python scripts/check_hosted_evidence.py
           python -m mkdocs build --strict
       - name: Upload dated audit evidence
         if: always()

@@ -1,12 +1,12 @@
 # RL-study
 
 LLM 강화학습을 수식, 작은 PyTorch 구현, 실제 실행으로 잇는 한국어 중심의
-self-contained 강좌입니다. 현재는 승인된 [`GOAL.md`](GOAL.md)를 계약으로 삼아
-C0~C12 체크포인트를 순서대로 구현하고 있습니다.
+self-contained 강좌입니다. 승인된 [`GOAL.md`](GOAL.md)를 계약으로 삼아
+C0~C12 체크포인트와 최종 hosted 검증을 완료했습니다.
 
-> 현재 상태: C1~C9 검증 완료. C10·C11의 로컬 범위와 C12 clean-clone 감사는
-> 완료했습니다. Colab과 hosted CI 실행은 빈 원격 저장소에 첫 push 승인이
-> 필요해 대기 중입니다.
+> 현재 상태: 20개 완료 조건은 모두 `verified` 또는 근거가 있는
+> `external-manual`입니다. Linux/macOS/Windows × Python 3.10/3.12 CI,
+> scheduled notebook 감사와 무료 Colab 새 CPU runtime toy 실행까지 통과했습니다.
 
 ## 15분 quickstart
 
@@ -36,7 +36,8 @@ artifact 읽기는 [15분 시작](docs/getting-started.md), 장치별 지원은
 보세요. 날짜·환경·시간·artifact/checkpoint hash를 검증한 로컬 실행은
 [C11 demo evidence](docs/research/C11_DEMO_EVIDENCE.json)에 남겼습니다. 최종 후보
 commit의 독립 환경 17단계 감사 결과는
-[C12 final audit](docs/research/C12_FINAL_AUDIT.json)에 있습니다.
+[C12 final audit](docs/research/C12_FINAL_AUDIT.json), hosted run/job/artifact는
+[C12 hosted audit](docs/research/C12_HOSTED_AUDIT.json)에 있습니다.
 
 현재 offline toy core는 classic RL, DPO, RLHF-PPO, GRPO, DAPO,
 RLOO/Dr. GRPO/GSPO와 Agentic RL의 학습·중단 재개·평가를 실행할 수 있습니다.
@@ -70,7 +71,11 @@ python scripts/execute_notebooks.py --language all --kernel-name rl-study
 
 [무료 Colab quickstart](notebooks/colab/RL_study_quickstart.ipynb)는
 clone → install → offline toy demo → opt-in 실제 모델 smoke 순서를 고정합니다.
-hosted output은 실제 새 runtime에서 실행하기 전에는 저장하지 않습니다.
+2026-08-20 새 무료 CPU runtime에서 exact commit clone, PyTorch 2.13.0+cpu 설치,
+toy demo 5개 update와 최종 assertion을 실행했고 fallback 없이 완료했습니다.
+환경·시간·출력 경계는 [C10 Colab evidence](docs/research/C10_COLAB_EVIDENCE.json)에
+있습니다. 실제 모델 smoke는 opt-in을 꺼 둔 채 건너뛰었으므로 GPU 성공을
+주장하지 않습니다.
 
 ## 고정된 범위
 
@@ -152,8 +157,10 @@ python -m mkdocs build --strict
 ```
 
 Linux/macOS/Windows CPU matrix와 주기적 network/link/notebook audit는
-`.github/workflows`에 선언돼 있습니다. 원격 저장소에 최초 push되기 전에는
-workflow 파일의 로컬 계약만 검증된 것이며 hosted 성공으로 표시하지 않습니다.
+`.github/workflows`에 선언돼 있습니다. 최종 코드 SHA에서 3개 OS와 Python
+3.10/3.12의 6개 CPU job, 정적·문서 job, 수동 dispatch한 scheduled audit가 모두
+성공했습니다. run/job ID와 만료 가능한 artifact digest는
+[hosted audit](docs/research/C12_HOSTED_AUDIT.json)에 고정했습니다.
 
 기여 전에는 [CONTRIBUTING.md](CONTRIBUTING.md), 행동 규칙은
 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), 취약점은 [SECURITY.md](SECURITY.md)를

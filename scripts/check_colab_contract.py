@@ -76,7 +76,10 @@ def main() -> None:
         errors.append("final evidence assertion is missing")
     if errors:
         raise SystemExit("Colab contract failed:\n- " + "\n- ".join(errors))
-    print("Colab contract: PASS (hosted execution still requires populated remote)")
+    print(
+        "Colab source contract: PASS "
+        "(hosted result: docs/research/C10_COLAB_EVIDENCE.json)"
+    )
 
 
 if __name__ == "__main__":

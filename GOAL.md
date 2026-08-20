@@ -1,6 +1,6 @@
 # RL-study 구현 Goal 계약서
 
-> 상태: **Goal 실행 중 / C12 로컬 감사 완료, hosted Colab·CI와 push 승인 대기**
+> 상태: **Goal 완료 / C0~C12·hosted Colab·3-OS CI·scheduled audit 검증 완료**
 > 작성일: 2026-08-19 (Asia/Seoul)
 > 로컬 경로: `/Users/bangbyeonghun/Documents/nlp/RL-study`
 > 대상 원격: `https://github.com/BangProx/RL-study.git`
@@ -1049,3 +1049,25 @@ Goal 완료 보고는 홍보 문구보다 증거를 우선한다.
 7. Git branch/remote/commit 상태와 사용자가 다음에 할 수 있는 선택
 
 모든 필수 작업이 실제로 끝나고 검증 증거가 있을 때만 Goal을 완료로 표시한다.
+
+---
+
+## 17. 실행 완료 기록
+
+2026-08-20에 C0~C12와 승인된 A1~A8 범위를 모두 구현·검증했다.
+
+- 최종 코드 후보 `810205e55873c023a6d27accf9b72e9d1b7a9477`에서 로컬 148 tests,
+  ruff, strict mypy, 34 notebook, 17쌍 parity, link와 MkDocs strict를 통과했다.
+- 같은 SHA의 GitHub Actions run `32323026561`에서 Linux/macOS/Windows ×
+  Python 3.10/3.12 CPU 6개와 static/docs job이 모두 성공했다.
+- scheduled audit run `32323036240`에서 외부 링크, 34개 fresh-kernel notebook,
+  parity/output/site 재검증과 artifact upload가 성공했다.
+- 무료 Colab 새 CPU runtime에서 exact SHA clone → install → toy demo → final
+  assertion을 fallback 없이 완료했다. 선택형 실제 모델은 opt-in false로
+  `skipped`이며 GPU 성공으로 표시하지 않는다.
+- traceability 20개 행은 `verified` 또는 근거가 있는 `external-manual`이고,
+  `designed`/`pending`는 0이다. Linux CUDA 8-GPU verl 실행인 R12만
+  `external-manual` 경계를 유지한다.
+- 정확한 run/job/artifact ID, digest, 환경, 시간과 한계는
+  `docs/research/C10_COLAB_EVIDENCE.json` 및
+  `docs/research/C12_HOSTED_AUDIT.json`에 기록했다.

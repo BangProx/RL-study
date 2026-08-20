@@ -28,10 +28,10 @@
 - MkDocs strict build, local 64 targets와 external 44 URLs 검사
 - SmolLM2-135M-Instruct CPU LoRA 실제 2-step과 resume byte parity
 
-### Not yet hosted
+### Hosted validation
 
-- 빈 원격 저장소에 첫 push가 승인되지 않아 GitHub-hosted CI와 새 Colab runtime
-  실행 evidence는 아직 없습니다.
+- Linux/macOS/Windows × Python 3.10/3.12 hosted CI, scheduled notebook audit와
+  새 Colab CPU runtime toy 경로를 실행하고 durable evidence를 기록했습니다.
 - Linux CUDA 8-GPU verl recipe와 ALFWorld full runtime은 `external-manual`입니다.
 
 [0.1.0]: https://github.com/BangProx/RL-study/releases/tag/v0.1.0

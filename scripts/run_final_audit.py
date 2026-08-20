@@ -122,6 +122,7 @@ def main() -> int:
         ],
         [python, "scripts/check_bilingual_parity.py"],
         [python, "scripts/check_colab_contract.py"],
+        [python, "scripts/check_hosted_evidence.py"],
         [python, "-m", "mkdocs", "build", "--strict"],
         [
             python,

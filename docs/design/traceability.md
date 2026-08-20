@@ -18,16 +18,16 @@
 | R08 | preference/verifier→update→eval 전체 pipeline | L10~L13 | TinyReasoning, RM/verifier, trainers | C6 fair comparison JSON + alignment lifecycle/card tests | verified |
 | R09 | offline Agentic env 2 + external adapter | L15, C1 audit §7 | calculator/lookup + ALFWorld adapter | deterministic env/update tests; ALFWorld runtime은 external-manual | verified |
 | R10 | toy/laptop/server와 선택형 config/CLI | L14, architecture §5 | strict config + adapter registry | unknown-key/profile matrix + CLI tests | verified |
-| R11 | 공개 LM LoRA one-step + Colab | L14, Colab | TRL adapter, SmolLM2 preset, quickstart | local one-step/card와 Colab source contract 완료; hosted 새 runtime은 첫 push 대기 | designed |
+| R11 | 공개 LM LoRA one-step + Colab | L14, Colab | TRL adapter, SmolLM2 preset, quickstart | local SmolLM2 LoRA 2-step/card + fresh Colab CPU toy completed, fallback 없음 (`C10_COLAB_EVIDENCE.json`) | verified |
 | R12 | pinned 분산 framework recipe | L14, C1 audit §4 | verl v0.9.0 recipes | schema/render tests; GPU run external-manual if absent | external-manual |
 | R13 | 10분 toy demo가 JSON/PNG/HTML/checkpoint/UI 생성 | L00/L16 | `rl_study.demo`, reporting, UI | fresh venv 25.47초 + C11 artifact/hash/UI audit | verified |
 | R14 | 모든 결과 experiment card 추적 | architecture §12 | artifact writer/reader | required fields, base lock, RAM/VRAM, atomic write와 5-card audit | verified |
 | R15 | 모든 수식·주장·선택의 source | 각 lesson Sources, C1 | `sources.yml`, source IDs, algorithm cards | provenance contract: 33 source / 32 documented ID / unknown 0 | verified |
 | R16 | license/NOTICE/provenance 보존 | C1 audit §8 | LICENSE, NOTICE, provenance checker | copied/adapted 0, DAPO no-copy와 asset redistribution audit | verified |
-| R17 | tests/lint/type/parity/link/3OS/scheduled CI | notebook style §10 | tests/scripts/workflows | local 145 tests/static/parity/link 통과; hosted 3OS/schedule는 첫 push 대기 | designed |
+| R17 | tests/lint/type/parity/link/3OS/scheduled CI | notebook style §10 | tests/scripts/workflows | local 148 tests/static/parity/link + hosted 3OS×Python 2 CI 7 jobs + scheduled fresh-notebook audit/artifact 통과 | verified |
 | R18 | README/MkDocs에서 사용자 경로 탐색 | curriculum + docs IA | README, MkDocs, hardware/troubleshooting | fresh venv journey, local/network links, strict MkDocs build | verified |
-| R19 | 올바른 origin·원격 이력 보존·hygiene | GOAL C0/C12 | Git metadata/community files | clean clone `c29ad1c`, `main`, exact origin, initial clean status, no force/push | verified |
-| R20 | 모든 matrix row verified/external-manual | 이 문서 | evidence auditor | no designed/pending row at C12 | designed |
+| R19 | 올바른 origin·원격 이력 보존·hygiene | GOAL C0/C12 | Git metadata/community files | clean clone, `main`, exact origin, 빈 원격에 non-force push와 이후 fast-forward push; force 없음 | verified |
+| R20 | 모든 matrix row verified/external-manual | 이 문서 | evidence auditor | strict release contract와 hosted evidence contract: designed/pending 0, R12만 근거 있는 external-manual | verified |
 
 ## 알고리즘→식→코드→test 계획
 
@@ -130,6 +130,13 @@ C6 DPO/RLHF gradient ownership test로 검증됐다. tool/environment 행은 C9�
 - C11: R13, R17, R18의 UI/site/CI evidence 추가
 - C12: `designed`/`pending`가 0인지 자동 검사하고, 실제 hardware가 없는 항목만
   이유·명령·기대 artifact가 있는 `external-manual`로 허용
+
+2026-08-20 최종 hosted evidence는 commit
+`810205e55873c023a6d27accf9b72e9d1b7a9477`에서 수집했다. GitHub Actions
+3-OS×Python 2 matrix와 scheduled fresh-notebook audit, 무료 Colab 새 CPU runtime의
+toy 실행이 모두 성공했다. 정확한 run/job/artifact ID와 Colab 출력은
+`docs/research/C12_HOSTED_AUDIT.json`과 `C10_COLAB_EVIDENCE.json`에 있으며
+`scripts/check_hosted_evidence.py`가 두 파일의 SHA·matrix·상태 계약을 검사한다.
 
 `external-manual`은 “아마 된다”가 아니다. exact dependency/version, 실행 명령,
 필요 hardware, 예상 schema와 성공/실패 판정법이 모두 있어야 한다.

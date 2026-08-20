@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "checkpoint": "C12",
+  "status": "passed",
+  "result_origin": "hosted_executed",
+  "recorded_at": "2026-08-20T02:08:52Z",
+  "repository": "https://github.com/BangProx/RL-study",
+  "verified_commit": "810205e55873c023a6d27accf9b72e9d1b7a9477",
+  "ci": {
+    "name": "CI",
+    "run_id": 32323026561,
+    "run_number": 3,
+    "event": "push",
+    "url": "https://github.com/BangProx/RL-study/actions/runs/32323026561",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-08-20T01:59:50Z",
+    "updated_at": "2026-08-20T02:05:22Z",
+    "head_sha": "810205e55873c023a6d27accf9b72e9d1b7a9477",
+    "jobs": [
+      {
+        "id": 96288738932,
+        "name": "Static, notebooks, links, MkDocs",
+        "conclusion": "success"
+      },
+      {
+        "id": 96288739001,
+        "name": "ubuntu-latest / Python 3.10 / CPU",
+        "conclusion": "success"
+      },
+      {
+        "id": 96288739003,
+        "name": "ubuntu-latest / Python 3.12 / CPU",
+        "conclusion": "success"
+      },
+      {
+        "id": 96288739013,
+        "name": "macos-latest / Python 3.10 / CPU",
+        "conclusion": "success"
+      },
+      {
+        "id": 96288739002,
+        "name": "macos-latest / Python 3.12 / CPU",
+        "conclusion": "success"
+      },
+      {
+        "id": 96288739141,
+        "name": "windows-latest / Python 3.10 / CPU",
+        "conclusion": "success"
+      },
+      {
+        "id": 96288739015,
+        "name": "windows-latest / Python 3.12 / CPU",
+        "conclusion": "success"
+      }
+    ],
+    "job_contract": "Every dependency, CPU-test, static, notebook, local-link, and strict-MkDocs step completed successfully."
+  },
+  "scheduled_audit": {
+    "name": "Scheduled learning-artifact audit",
+    "run_id": 32323036240,
+    "run_number": 3,
+    "event": "workflow_dispatch",
+    "url": "https://github.com/BangProx/RL-study/actions/runs/32323036240",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-08-20T02:00:00Z",
+    "updated_at": "2026-08-20T02:04:26Z",
+    "head_sha": "810205e55873c023a6d27accf9b72e9d1b7a9477",
+    "job": {
+      "id": 96288767091,
+      "name": "links-and-notebooks",
+      "conclusion": "success",
+      "verified_steps": [
+        "install full documentation environment",
+        "check external and local links",
+        "execute every notebook in a fresh kernel",
+        "revalidate parity, outputs, Colab source, and site",
+        "upload dated audit evidence"
+      ]
+    },
+    "artifact": {
+      "id": 9390477024,
+      "name": "scheduled-learning-audit-32323036240",
+      "size_in_bytes": 1110483,
+      "digest": "sha256:5f4d3a10eb5d7200f0df50f05b863554d64409eea5a5d31f818710e01fcb1b75",
+      "created_at": "2026-08-20T02:04:13Z",
+      "expires_at": "2026-09-03T02:04:12Z",
+      "expired": false
+    }
+  },
+  "colab": {
+    "status": "passed",
+    "evidence": "docs/research/C10_COLAB_EVIDENCE.json",
+    "source_commit": "810205e55873c023a6d27accf9b72e9d1b7a9477",
+    "toy_demo": "passed",
+    "optional_real_model_smoke": "skipped"
+  },
+  "release_boundary": {
+    "hosted_requirements_verified": [
+      "R11",
+      "R17",
+      "R20"
+    ],
+    "remaining_designed_or_pending": [],
+    "external_manual_requirements": [
+      "R12"
+    ],
+    "note": "The 8-GPU verl recipe remains explicitly external-manual; no unexecuted performance value is promoted to hosted evidence."
+  }
+}

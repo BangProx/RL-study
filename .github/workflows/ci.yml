@@ -62,7 +62,8 @@ jobs:
         run: |
           python scripts/check_design_contract.py
           python scripts/check_provenance.py
-          python scripts/check_release_contract.py --allow-hosted-pending
+          python scripts/check_hosted_evidence.py
+          python scripts/check_release_contract.py
           python scripts/check_notebook_contract.py --language all --require-executed
           python scripts/check_bilingual_parity.py
           python scripts/check_colab_contract.py

@@ -35,11 +35,14 @@
 ## Notebook, Colab, CI
 
 - 34개 notebook은 macOS arm64 CPU와 독립 fresh kernel에서 실행했습니다.
-- GitHub 원격이 비어 있고 첫 push가 승인되지 않아 hosted Linux/macOS/Windows
-  Actions와 weekly job은 아직 실행되지 않았습니다.
-- 같은 이유로 Colab notebook source contract만 검증됐고 새 hosted runtime
-  output은 없습니다. Colab image와 무료 accelerator availability는 drift할 수
-  있습니다.
+- GitHub-hosted Linux/macOS/Windows × Python 3.10/3.12 CPU matrix와 수동
+  dispatch한 scheduled fresh-notebook audit는 2026-08-20 exact commit에서
+  통과했습니다. 이는 미래 runner image와 dependency 조합까지 보장하지 않습니다.
+- Colab은 새 무료 CPU runtime에서 toy 경로만 검증했습니다. 선택형 실제 모델
+  smoke는 opt-in을 켜지 않았고 GPU 결과가 아닙니다. Colab image와 무료
+  accelerator availability는 drift할 수 있습니다.
+- scheduled artifact는 GitHub 보존 기간이 14일이라 만료될 수 있습니다. run/job
+  ID, artifact digest와 핵심 판정은 repository JSON evidence에 영구 기록합니다.
 
 ## 최신성
 

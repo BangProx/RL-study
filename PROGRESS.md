@@ -399,3 +399,40 @@
     non-force push 후 hosted 실행 증거를 얻기 전까지 완료 처리하지 않음
 - 다음 작업: 사용자 승인 후 빈 origin을 다시 읽기 전용 확인하고 `main`을
   non-force push한 뒤 3-OS CI/weekly job과 fresh Colab을 검증
+
+## 2026-08-20 — C10~C12 hosted gate 완료
+
+- 현재 checkpoint: C0~C12 완료
+- 격리 환경:
+  - local 최종 회귀는 `/private/tmp/rl-study-conda` Conda prefix의 Python 3.12 사용
+  - base shell은 활성 상태였지만 base 환경에는 dependency를 설치하지 않음
+  - `pip check`에서 broken requirement 0
+- 최종 코드 후보:
+  - commit `810205e55873c023a6d27accf9b72e9d1b7a9477`
+  - `git push origin main`을 force 없이 실행
+- GitHub-hosted CI:
+  - run `32323026561`, conclusion `success`
+  - Ubuntu/macOS/Windows × Python 3.10/3.12 CPU 6개와 static/docs job 모두 성공
+  - Windows에서 발견한 POSIX 전용 peak-RSS/system-memory 경로를 Win32 API와
+    cross-platform helper로 수정한 뒤 full matrix 재검증
+- scheduled learning-artifact audit:
+  - workflow_dispatch run `32323036240`, job `96288767091`, conclusion `success`
+  - external/local link, 34개 fresh-kernel notebook, parity/output/Colab source,
+    strict MkDocs와 artifact upload 모두 성공
+  - artifact `9390477024`, 1,110,483 byte,
+    SHA-256 `5f4d3a10…1fcb1b75`
+- fresh Colab CPU runtime:
+  - 같은 commit을 clone하고 Python 3.12.13 / PyTorch 2.13.0+cpu에서 실행
+  - toy demo `completed`, `result_origin=local_executed`, fallback false,
+    experiment card 5개, wall 56.607초
+  - simple policy `p_good` 0.5 → 0.916
+  - 선택형 실제 모델 smoke는 opt-in false로 정직하게 `skipped`
+- local 최종 회귀:
+  - pytest 148 passed, ruff pass, strict mypy 67 source files
+  - design/provenance/notebook 34/parity 17/Colab/local links/MkDocs strict 통과
+  - traceability `designed`/`pending` 0; R12 8-GPU verl만 근거 있는
+    `external-manual`
+- durable evidence:
+  - `docs/research/C10_COLAB_EVIDENCE.json`
+  - `docs/research/C12_HOSTED_AUDIT.json`
+  - `scripts/check_hosted_evidence.py`
